@@ -1,0 +1,11 @@
+/blog-platform-be/node_modules
+/blog-platform-fe/node_modules
+/blog-platform-be/.env
+/blog-platform-fe/.env
+/blog-platform-be/.env.local
+/blog-platform-fe/.env.local
+/blog-platform-be/dist
+/blog-platform-fe/dist
+/blog-platform-be/build
+/blog-platform-fe/build
+/blog-platform-fe/.next

@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import api from '@/lib/api/ssrAPI';
 import { MessageErrorSSR } from '@/lib/types/comments';
+
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);

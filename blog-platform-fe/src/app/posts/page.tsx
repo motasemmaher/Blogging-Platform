@@ -3,7 +3,7 @@ import { postsApi } from '@/lib/api/posts';
 import PostsIndex from '@/components/posts';
 
 
-export default async function PostsPage({searchParams}: {searchParams: {search: string, page: string}}) {
+export default async function PostsPage({searchParams}: {searchParams: Promise<{search: string, page: string} >}) {
   const {search, page} = await searchParams;
 
   const { posts, pagination } = await postsApi.getPosts(

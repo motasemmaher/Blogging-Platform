@@ -4,9 +4,7 @@ import api from '@/lib/api/ssrAPI';
 import { MessageErrorSSR } from '@/lib/types/comments';
 
 interface RouteParams {
-  params: {
-    id: string;
-  };
+  params: Promise<{ id: string }>;
 }
 
 export async function GET(request: NextRequest, { params }: RouteParams) {
@@ -30,7 +28,8 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
 export async function PUT(request: NextRequest, { params }: RouteParams) {
   try {
     const body = await request.json();
-    const response = await api.put(`/posts/${params.id}`, body);
+    const { id } = await params;
+    const response = await api.put(`/posts/${id}`, body);
 
     return NextResponse.json(response.data, { status: 200 });
   } catch (error) {
@@ -47,7 +46,8 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
 
 export async function DELETE(request: NextRequest, { params }: RouteParams) {
   try {
-    const response = await api.delete(`/posts/${params.id}`);
+    const { id } = await params;
+    const response = await api.delete(`/posts/${id}`);
 
     return NextResponse.json(response.data, { status: 200 });
   } catch (error) {

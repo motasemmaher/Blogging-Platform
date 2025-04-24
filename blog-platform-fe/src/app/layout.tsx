@@ -6,7 +6,7 @@ import { Navbar } from "@/components/ui/navbar";
 import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"] });
-
+export const runtime = 'edge'; 
 export const metadata: Metadata = {
   title: "Blog Platform",
   description: "A full-stack blogging platform",

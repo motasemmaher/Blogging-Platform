@@ -4,14 +4,15 @@ import api from '@/lib/api/ssrAPI';
 import { MessageErrorSSR } from "@/lib/types/comments";
 
 interface RouteParams {
-  params: {
+  params: Promise<{
     id: string;
     commentId: string;
-  };
+  }>;
 }
 export async function DELETE(request: NextRequest, { params }: RouteParams) {
     try {
-      const response = await api.delete(`/posts/${params.id}/comments/${params.commentId}`);
+      const { id, commentId } = await params;
+      const response = await api.delete(`/posts/${id}/comments/${commentId}`);
       
       return NextResponse.json(response.data, { status: 200 });
     } catch (error) {

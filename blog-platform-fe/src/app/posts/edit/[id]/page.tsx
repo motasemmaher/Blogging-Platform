@@ -3,7 +3,7 @@ import { PostForm } from '@/components/forms/post-form';
 import { postsApi } from '@/lib/api/posts';
 import { cookies } from 'next/headers';
 
-export default async function EditPostPage({ params }: { params: { id: string } }) {
+export default async function EditPostPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
 
   if (!id) {

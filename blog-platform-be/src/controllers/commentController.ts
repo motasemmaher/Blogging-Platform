@@ -56,7 +56,11 @@ export const deleteComment = async (req: Request, res: Response): Promise<void> 
     );
     
     if (!permission.allowed) {
-      res.status(403).json({ message: permission.reason || 'Not authorized' });
+      if (permission.reason === 'Comment not found') {
+        res.status(404).json({ message: permission.reason });
+      } else {
+        res.status(403).json({ message: permission.reason || 'Not authorized' });
+      }
       return;
     }
     

@@ -13,7 +13,6 @@ env:
   POSTGRES_PORT: 5432
   JWT_EXPIRE: 1h
   DATABASE_URL: ${{ secrets.DATABASE_URL }}
-  NODE_ENV: test
   JWT_SECRET: ${{ secrets.JWT_SECRET }}
   JWT_REFRESH_SECRET: ${{ secrets.JWT_REFRESH_SECRET }}
 

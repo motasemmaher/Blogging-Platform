@@ -306,13 +306,8 @@ The platform uses a client-server architecture with a clear separation between t
 
 - Backend runs on port 3001
 - Frontend runs on port 3000
-- API documentation available at `/api/docs` when backend is running
 
 ## Contributing
 1. Fork the repository
 2. Create a feature branch
 3. Submit a pull request
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.

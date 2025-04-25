@@ -39,21 +39,21 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '22'
-        cache: 'npm'
+        # cache: 'npm'
 
     - name: Install backend dependencies
-      # working-directory: ./blog-platform-be
+      working-directory: ./blog-platform-be
       run: |
         cd blog-platform-be
         npm ci
 
     - name: Run backend ESLint
-      # working-directory: ./blog-platform-be
-      run: cd blog-platform-be && npm run lint
+      working-directory: ./blog-platform-be
+      run: npm run lint
 
     - name: Run backend tests
-      # working-directory: ./blog-platform-be
-      run: cd blog-platform-be && npm run test
+      working-directory: ./blog-platform-be
+      run: npm run test
       env:
         DATABASE_URL: ${{ secrets.DATABASE_URL }}
         NODE_ENV: ${{ env.NODE_ENV }}
@@ -73,11 +73,13 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '22'
-        cache: 'npm'
+        # cache: 'npm'
 
     - name: Install frontend dependencies
       working-directory: ./blog-platform-fe
-      run: npm ci
+      run: |
+        cd blog-platform-fe
+        npm ci
 
     - name: Run frontend ESLint
       working-directory: ./blog-platform-fe

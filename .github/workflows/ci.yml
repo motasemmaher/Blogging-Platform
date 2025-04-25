@@ -50,14 +50,14 @@ jobs:
 
     - name: Run backend tests
       working-directory: ./blog-platform-be
-      run: npm run test
-      env:
-        NODE_ENV: test
-        PORT: 3001
-        JWT_EXPIRE: 1h
-        DATABASE_URL: ${{ secrets.DATABASE_URL }}
-        JWT_SECRET: ${{ secrets.JWT_SECRET }}
-        JWT_REFRESH_SECRET: ${{ secrets.JWT_REFRESH_SECRET }}
+      run: |
+        NODE_ENV=test \
+        PORT=3001 \
+        JWT_EXPIRE=1h \
+        DATABASE_URL=${{ secrets.DATABASE_URL }} \
+        JWT_SECRET=${{ secrets.JWT_SECRET }} \
+        JWT_REFRESH_SECRET=${{ secrets.JWT_REFRESH_SECRET }} \
+        npm run test
 
 
   frontend:

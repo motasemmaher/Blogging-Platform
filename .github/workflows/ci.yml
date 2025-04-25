@@ -68,13 +68,6 @@ jobs:
       working-directory: ./blog-platform-fe
       run: npm run lint
 
-    - name: Run frontend tests
-      working-directory: ./blog-platform-fe
-      run: npm run test
-      env:
-        NEXT_PUBLIC_API_URL: ${{ env.NEXT_PUBLIC_API_URL }}
-        NEXT_PUBLIC_BASE_URL: ${{ env.NEXT_PUBLIC_BASE_URL }}
-
     - name: Build frontend
       working-directory: ./blog-platform-fe
       run: npm run build

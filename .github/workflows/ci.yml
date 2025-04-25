@@ -1,0 +1,102 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  NODE_ENV: test
+  BACKEND_PORT: 3001
+  FRONTEND_PORT: 3000
+  POSTGRES_PORT: 5432
+
+jobs:
+  backend:
+    name: Backend
+    runs-on: ubuntu-latest
+
+    # services:
+    #   postgres:
+    #     image: postgres:latest
+    #     env:
+    #       POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+    #       POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+    #       POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+    #     ports:
+    #       - ${{ env.POSTGRES_PORT }}:5432
+    #     options: >-
+    #       --health-cmd pg_isready
+    #       --health-interval 10s
+    #       --health-timeout 5s
+    #       --health-retries 5
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'pnpm'
+
+    - name: Install pnpm
+      run: npm install -g pnpm
+
+    - name: Install backend dependencies
+      working-directory: ./blog-platform-be
+      run: pnpm install
+
+    - name: Run backend ESLint
+      working-directory: ./blog-platform-be
+      run: pnpm lint
+
+    - name: Run backend tests
+      working-directory: ./blog-platform-be
+      run: pnpm test
+      env:
+        DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        NODE_ENV: ${{ env.NODE_ENV }}
+        JWT_SECRET: ${{ secrets.JWT_SECRET }}
+        JWT_REFRESH_SECRET: ${{ secrets.JWT_REFRESH_SECRET }}
+        PORT: ${{ env.BACKEND_PORT }}
+
+  frontend:
+    name: Frontend
+    runs-on: ubuntu-latest
+    needs: backend
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'pnpm'
+
+    - name: Install pnpm
+      run: npm install -g pnpm
+
+    - name: Install frontend dependencies
+      working-directory: ./blog-platform-fe
+      run: pnpm install
+
+    - name: Run frontend ESLint
+      working-directory: ./blog-platform-fe
+      run: pnpm lint
+
+    - name: Run frontend tests
+      working-directory: ./blog-platform-fe
+      run: pnpm test
+      env:
+        NEXT_PUBLIC_API_URL: ${{ env.NEXT_PUBLIC_API_URL }}
+        NEXT_PUBLIC_BASE_URL: ${{ env.NEXT_PUBLIC_BASE_URL }}
+
+    - name: Build frontend
+      working-directory: ./blog-platform-fe
+      run: pnpm build
+      env:
+        NEXT_PUBLIC_API_URL: ${{ env.NEXT_PUBLIC_API_URL }}
+        NEXT_PUBLIC_BASE_URL: ${{ env.NEXT_PUBLIC_BASE_URL }}

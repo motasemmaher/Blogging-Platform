@@ -11,18 +11,23 @@ env:
   BACKEND_PORT: 3001
   FRONTEND_PORT: 3000
   POSTGRES_PORT: 5432
+  JWT_EXPIRE: 1h
+  DATABASE_URL: ${{ secrets.DATABASE_URL }}
+  NODE_ENV: test
+  JWT_SECRET: ${{ secrets.JWT_SECRET }}
+  JWT_REFRESH_SECRET: ${{ secrets.JWT_REFRESH_SECRET }}
 
 jobs:
   backend:
     name: Backend
     runs-on: ubuntu-latest
-    env:
-      DATABASE_URL: ${{ secrets.DATABASE_URL }}
-      NODE_ENV: ${{ env.NODE_ENV }}
-      JWT_SECRET: ${{ secrets.JWT_SECRET }}
-      JWT_REFRESH_SECRET: ${{ secrets.JWT_REFRESH_SECRET }}
-      PORT: ${{ env.BACKEND_PORT }}
-      JWT_EXPIRE: ${{ env.JWT_EXPIRE }}
+    # env:
+    #   DATABASE_URL: ${{ secrets.DATABASE_URL }}
+    #   NODE_ENV: test
+    #   JWT_SECRET: ${{ secrets.JWT_SECRET }}
+    #   JWT_REFRESH_SECRET: ${{ secrets.JWT_REFRESH_SECRET }}
+    #   PORT: 3001
+      # JWT_EXPIRE: 1h
 
     steps:
     - uses: actions/checkout@v4
@@ -57,7 +62,7 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '22'
-        # cache: 'npm'
+        cache: 'npm'
 
     - name: Install frontend dependencies
       working-directory: ./blog-platform-fe
@@ -71,5 +76,5 @@ jobs:
       working-directory: ./blog-platform-fe
       run: npm run build
       env:
-        NEXT_PUBLIC_API_URL: ${{ env.NEXT_PUBLIC_API_URL }}
-        NEXT_PUBLIC_BASE_URL: ${{ env.NEXT_PUBLIC_BASE_URL }}
+        NEXT_PUBLIC_API_URL: http://localhost:3001
+        NEXT_PUBLIC_BASE_URL: http://localhost:3000

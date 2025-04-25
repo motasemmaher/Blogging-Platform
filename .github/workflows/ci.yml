@@ -13,38 +13,37 @@ env:
   POSTGRES_PORT: 5432
 
 jobs:
-  # backend:
-  #   name: Backend
-  #   runs-on: ubuntu-latest
+  backend:
+    name: Backend
+    runs-on: ubuntu-latest
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      NODE_ENV: ${{ env.NODE_ENV }}
+      JWT_SECRET: ${{ secrets.JWT_SECRET }}
+      JWT_REFRESH_SECRET: ${{ secrets.JWT_REFRESH_SECRET }}
+      PORT: ${{ env.BACKEND_PORT }}
+      JWT_EXPIRE: ${{ env.JWT_EXPIRE }}
 
-  #   env:
-  #     DATABASE_URL: ${{ secrets.DATABASE_URL }}
-  #     NODE_ENV: ${{ env.NODE_ENV }}
-  #     JWT_SECRET: ${{ secrets.JWT_SECRET }}
-  #     JWT_REFRESH_SECRET: ${{ secrets.JWT_REFRESH_SECRET }}
-  #     PORT: ${{ env.BACKEND_PORT }}
-  #     JWT_EXPIRE: ${{ env.JWT_EXPIRE }}
+    steps:
+    - uses: actions/checkout@v4
 
-  #   steps:
-  #   - uses: actions/checkout@v4
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '22'
+        # cache: 'npm'
 
-  #   - name: Setup Node.js
-  #     uses: actions/setup-node@v4
-  #     with:
-  #       node-version: '22'
-  #       # cache: 'npm'
+    - name: Install backend dependencies
+      working-directory: ./blog-platform-be
+      run: npm ci
 
-  #   - name: Install backend dependencies
-  #     working-directory: ./blog-platform-be
-  #     run: npm ci
+    - name: Run backend ESLint
+      working-directory: ./blog-platform-be
+      run: npm run lint
 
-  #   - name: Run backend ESLint
-  #     working-directory: ./blog-platform-be
-  #     run: npm run lint
-
-  #   - name: Run backend tests
-  #     working-directory: ./blog-platform-be
-  #     run: npm run test
+    - name: Run backend tests
+      working-directory: ./blog-platform-be
+      run: npm run test
 
 
   frontend:

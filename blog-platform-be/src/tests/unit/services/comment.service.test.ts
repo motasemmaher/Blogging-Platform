@@ -132,4 +132,4 @@ describe('CommentService', () => {
       expect(result).toEqual({ allowed: false, reason: 'Not authorized to modify this comment' });
     });
   });
-}); 
+});

@@ -18,10 +18,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
     const errorMessage = error instanceof Error ? error.message : 'Failed to fetch posts';
     const statusCode = (error as MessageErrorSSR)?.status || 500;
 
-    return NextResponse.json(
-      { error: errorMessage },
-      { status: statusCode }
-    );
+    return NextResponse.json({ error: errorMessage }, { status: statusCode });
   }
 }
 
@@ -37,10 +34,7 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
     const errorMessage = error instanceof Error ? error.message : 'Failed to update post';
     const statusCode = (error as MessageErrorSSR)?.status || 500;
 
-    return NextResponse.json(
-      { error: errorMessage },
-      { status: statusCode }
-    );
+    return NextResponse.json({ error: errorMessage }, { status: statusCode });
   }
 }
 
@@ -55,9 +49,6 @@ export async function DELETE(request: NextRequest, { params }: RouteParams) {
     const errorMessage = error instanceof Error ? error.message : 'Failed to delete post';
     const statusCode = (error as MessageErrorSSR)?.status || 500;
 
-    return NextResponse.json(
-      { error: errorMessage },
-      { status: statusCode }
-    );
+    return NextResponse.json({ error: errorMessage }, { status: statusCode });
   }
-} 
+}

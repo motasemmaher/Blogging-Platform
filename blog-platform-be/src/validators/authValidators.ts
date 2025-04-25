@@ -23,4 +23,4 @@ export const loginSchema = yup.object({
 // Refresh token validator schema
 export const refreshTokenSchema = yup.object({
   refreshToken: yup.string().required('Refresh token is required'),
-}); 
+});

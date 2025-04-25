@@ -32,9 +32,11 @@ export default function CommentSection({ postId }: { postId: number }) {
         <Card>
           <CardContent className="py-4 text-center">
             <p className="text-muted-foreground">
-              Please <Button variant="link" className="p-0 h-auto" asChild>
+              Please
+              <Button variant="link" className="p-0 h-auto" asChild>
                 <a href="/auth/login">log in</a>
-              </Button> to leave a comment.
+              </Button>
+              to leave a comment.
             </p>
           </CardContent>
         </Card>
@@ -60,4 +62,4 @@ export default function CommentSection({ postId }: { postId: number }) {
       )}
     </div>
   );
-} 
+}

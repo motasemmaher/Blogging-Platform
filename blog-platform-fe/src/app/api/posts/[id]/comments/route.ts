@@ -3,7 +3,6 @@ import type { NextRequest } from 'next/server';
 import api from '@/lib/api/ssrAPI';
 import { MessageErrorSSR } from '@/lib/types/comments';
 
-
 interface RouteParams {
   params: Promise<{
     id: string;

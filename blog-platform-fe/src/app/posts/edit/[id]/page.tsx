@@ -18,9 +18,5 @@ export default async function EditPostPage({ params }: { params: Promise<{ id: s
     return notFound();
   }
 
-  return (
-    <PostForm
-      initialData={post}
-    />
-  );
-} 
+  return <PostForm initialData={post} />;
+}

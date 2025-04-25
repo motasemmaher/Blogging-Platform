@@ -7,8 +7,22 @@ import { loginSchema } from '@/lib/validators/auth';
 import { useAuth } from '@/contexts/auth-context';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form';
 import { toast } from 'sonner';
 import { MessageError } from '@/lib/types/comments';
 
@@ -73,10 +87,7 @@ export function LoginForm() {
               )}
             />
             {error && (
-              <p
-                data-slot="form-message"
-                className="text-destructive text-sm"
-              >
+              <p data-slot="form-message" className="text-destructive text-sm">
                 {error}
               </p>
             )}
@@ -88,7 +99,7 @@ export function LoginForm() {
       </CardContent>
       <CardFooter className="flex justify-center">
         <p className="text-sm text-muted-foreground">
-          Don&apos;t have an account?{' '}
+          Don&apos;t have an account?
           <a href="/auth/register" className="text-primary hover:underline">
             Register
           </a>
@@ -96,4 +107,4 @@ export function LoginForm() {
       </CardFooter>
     </Card>
   );
-} 
+}

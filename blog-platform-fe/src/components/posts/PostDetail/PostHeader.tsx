@@ -17,7 +17,7 @@ export function PostHeader({ post, readTime }: PostHeaderProps) {
 
       <div className="flex items-center justify-between flex-wrap gap-4">
         <AuthorCard author={post.author} />
-        
+
         <div className="flex items-center text-sm text-muted-foreground space-x-4">
           <div className="flex items-center">
             <Calendar className="mr-1 h-4 w-4" />
@@ -31,4 +31,4 @@ export function PostHeader({ post, readTime }: PostHeaderProps) {
       </div>
     </div>
   );
-} 
+}

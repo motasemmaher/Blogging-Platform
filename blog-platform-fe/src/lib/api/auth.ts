@@ -6,14 +6,20 @@ import { getCookie } from '../utils/cookies';
 export const authApi = {
   // Register a new user
   register: async (data: RegisterData) => {
-    const response = await apiClient.post<AvertraMutationResponse<LoginResponse>>('/auth/register', data);
+    const response = await apiClient.post<AvertraMutationResponse<LoginResponse>>(
+      '/auth/register',
+      data
+    );
 
     return response.data;
   },
 
   // Login user
   login: async (data: LoginData) => {
-    const response = await apiClient.post<AvertraMutationResponse<LoginResponse>>('/auth/login', data);
+    const response = await apiClient.post<AvertraMutationResponse<LoginResponse>>(
+      '/auth/login',
+      data
+    );
 
     return response.data;
   },
@@ -26,6 +32,6 @@ export const authApi = {
   // Check if user is logged in
   isLoggedIn: () => {
     if (typeof window === 'undefined') return false;
-    return !!getCookie("token");
+    return !!getCookie('token');
   },
-}; 
+};

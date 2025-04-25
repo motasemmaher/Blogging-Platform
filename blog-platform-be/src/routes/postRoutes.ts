@@ -35,16 +35,11 @@ router.post('/', authenticate, validateRequest(createPostSchema), createPost);
 // @route   PUT /api/posts/:id
 // @desc    Update a post
 // @access  Private
-router.put(
-  '/:id',
-  authenticate,
-  validateRequest(updatePostSchema),
-  updatePost
-);
+router.put('/:id', authenticate, validateRequest(updatePostSchema), updatePost);
 
 // @route   DELETE /api/posts/:id
 // @desc    Delete a post
 // @access  Private
 router.delete('/:id', validateRequest(getPostByIdSchema, 'params'), authenticate, deletePost);
 
-export default router; 
+export default router;

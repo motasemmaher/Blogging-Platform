@@ -27,7 +27,7 @@ export class CommentModel {
   static async create(commentData: {
     content: string;
     postId: number;
-    authorId: number;  // Using authorId to match the schema definition
+    authorId: number; // Using authorId to match the schema definition
   }) {
     const result = await db
       .insert(comments)
@@ -37,7 +37,7 @@ export class CommentModel {
         updatedAt: new Date(),
       })
       .returning();
-    
+
     return result.length > 0 ? this.findById(result[0].id) : null;
   }
 
@@ -62,8 +62,8 @@ export class CommentModel {
       })
       .from(comments)
       .where(eq(comments.id, commentId))
-      .leftJoin(users, eq(comments.authorId, users.id))
-    
+      .leftJoin(users, eq(comments.authorId, users.id));
+
     return result.length > 0 ? result[0] : null;
   }
-} 
+}

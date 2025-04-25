@@ -19,4 +19,4 @@ export function PostContent({ content }: PostContentProps) {
       </CardContent>
     </Card>
   );
-} 
+}

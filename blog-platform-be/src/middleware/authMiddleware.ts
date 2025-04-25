@@ -38,7 +38,7 @@ export const setUser = (req: Request, res: Response, next: NextFunction) => {
   } catch (error) {
     next();
   }
-}
+};
 
 // Authenticate middleware
 export const authenticate = (req: Request, res: Response, next: NextFunction) => {

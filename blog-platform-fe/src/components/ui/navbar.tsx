@@ -19,7 +19,10 @@ export function Navbar() {
             <Link href="/" className="text-sm font-medium transition-colors hover:text-primary">
               Home
             </Link>
-            <Link href="/posts" className="text-sm font-medium transition-colors hover:text-primary">
+            <Link
+              href="/posts"
+              className="text-sm font-medium transition-colors hover:text-primary"
+            >
               Posts
             </Link>
           </nav>
@@ -52,4 +55,4 @@ export function Navbar() {
       </div>
     </header>
   );
-} 
+}

@@ -24,9 +24,9 @@ export function formatRelativeDate(dateString: string): string {
   try {
     const date = parseISO(dateString);
     const now = new Date();
-    
+
     const diffInDays = Math.floor((now.getTime() - date.getTime()) / (1000 * 60 * 60 * 24));
-    
+
     if (diffInDays === 0) {
       return 'Today';
     } else if (diffInDays === 1) {
@@ -43,4 +43,4 @@ export function formatRelativeDate(dateString: string): string {
     console.error('Error formatting relative date:', error);
     return dateString;
   }
-} 
+}

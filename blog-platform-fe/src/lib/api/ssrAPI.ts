@@ -1,4 +1,4 @@
-"use server";
+'use server';
 import axios from 'axios';
 import { cookies } from 'next/headers';
 
@@ -10,7 +10,7 @@ const getAxiosInstance = () => {
   });
 
   this_axios_instance.interceptors.request.use(
-    async (config) => {
+    async config => {
       const cookieStore = await cookies();
       const token = cookieStore.get('token')?.value;
       if (token) {
@@ -18,7 +18,7 @@ const getAxiosInstance = () => {
       }
       return config;
     },
-    (error) => {
+    error => {
       return Promise.reject(error);
     }
   );

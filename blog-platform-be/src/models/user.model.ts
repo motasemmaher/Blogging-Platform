@@ -5,23 +5,15 @@ import { users } from '../db/schema';
 export class UserModel {
   // Find user by email
   static async findByEmail(email: string) {
-    const result = await db
-      .select()
-      .from(users)
-      .where(eq(users.email, email))
-      .limit(1);
-    
+    const result = await db.select().from(users).where(eq(users.email, email)).limit(1);
+
     return result.length > 0 ? result[0] : null;
   }
 
   // Find user by ID
   static async findById(id: number) {
-    const result = await db
-      .select()
-      .from(users)
-      .where(eq(users.id, id))
-      .limit(1);
-    
+    const result = await db.select().from(users).where(eq(users.id, id)).limit(1);
+
     return result.length > 0 ? result[0] : null;
   }
 
@@ -35,7 +27,7 @@ export class UserModel {
         updatedAt: new Date(),
       })
       .returning();
-    
+
     return result.length > 0 ? result[0] : null;
   }
 
@@ -49,7 +41,7 @@ export class UserModel {
       })
       .where(eq(users.id, id))
       .returning();
-    
+
     return result.length > 0 ? result[0] : null;
   }
 
@@ -57,4 +49,4 @@ export class UserModel {
   static async delete(id: number) {
     return db.delete(users).where(eq(users.id, id));
   }
-} 
+}

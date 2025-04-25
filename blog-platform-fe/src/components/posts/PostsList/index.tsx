@@ -22,16 +22,14 @@ export default function PostsList() {
         <h1 className="text-3xl font-bold">Posts</h1>
         <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto items-start sm:items-center">
           <SearchBar />
-          {
-            isAuthenticated && (
-              <Link href="/posts/create">
-                <Button>
-                  <PlusCircle className="h-4 w-4 mr-2" />
-                  New Post
-                </Button>
-              </Link>
-            )
-          }
+          {isAuthenticated && (
+            <Link href="/posts/create">
+              <Button>
+                <PlusCircle className="h-4 w-4 mr-2" />
+                New Post
+              </Button>
+            </Link>
+          )}
         </div>
       </div>
 
@@ -40,7 +38,8 @@ export default function PostsList() {
           <h2 className="text-xl font-semibold mb-2">No posts found</h2>
           {searchParam ? (
             <p className="text-gray-600 mb-4">
-              No posts matching &ldquo;{searchParam}&rdquo; were found. Try another search or create a new post.
+              No posts matching &ldquo;{searchParam}&rdquo; were found. Try another search or create
+              a new post.
             </p>
           ) : (
             <p className="text-gray-600 mb-4">Get started by creating your first blog post</p>

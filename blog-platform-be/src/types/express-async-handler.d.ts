@@ -6,4 +6,4 @@ declare module 'express-async-handler' {
   ): RequestHandler<P, ResBody, ReqBody>;
 
   export = expressAsyncHandler;
-} 
+}

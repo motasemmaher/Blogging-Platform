@@ -5,7 +5,7 @@ import 'dotenv/config';
 import path from 'path';
 
 // Run migrations
-async function main() {
+async function main(): Promise<void> {
   if (!process.env.DATABASE_URL) {
     throw new Error('DATABASE_URL environment variable is required');
   }
@@ -19,12 +19,12 @@ async function main() {
   const db = drizzle(pool);
 
   console.log('Running migrations...');
-  
+
   // Define the correct paths for migrations
   const migrationsFolder = path.resolve(process.cwd(), 'drizzle');
-  
+
   console.log('Migrations folder:', migrationsFolder);
-  
+
   try {
     await migrate(db, { migrationsFolder });
     console.log('Migrations completed successfully');
@@ -36,7 +36,7 @@ async function main() {
   }
 }
 
-main().catch((error) => {
+main().catch(error => {
   console.error('Migration error:', error);
   process.exit(1);
-}); 
+});

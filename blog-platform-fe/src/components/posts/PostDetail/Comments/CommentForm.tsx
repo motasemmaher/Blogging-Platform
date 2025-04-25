@@ -24,17 +24,17 @@ interface CommentFormProps {
 export default function CommentForm({ postId, userId, onCommentAdded }: CommentFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { user } = useAuth();
-  
+
   // Initialize form with React Hook Form and Yup validation
   const form = useForm<CommentFormValues>({
     resolver: yupResolver(commentSchema),
     defaultValues: {
       content: '',
       postId,
-      userId
-    }
+      userId,
+    },
   });
-  
+
   // Watch the content field to calculate remaining characters
   const content = form.watch('content');
   const charLimit = 500;
@@ -47,10 +47,10 @@ export default function CommentForm({ postId, userId, onCommentAdded }: CommentF
       setIsSubmitting(true);
 
       const response = await commentsApi.createComment(data);
-      
+
       // Type assertion for response data
       onCommentAdded(response as Comment);
-      
+
       // Reset form after successful submission
       form.reset({ content: '', postId, userId });
       toast.success('Comment added successfully');
@@ -94,7 +94,9 @@ export default function CommentForm({ postId, userId, onCommentAdded }: CommentF
                 />
 
                 <div className="flex justify-between items-center mt-2">
-                  <span className={`text-xs ${isOverLimit ? 'text-destructive' : 'text-muted-foreground'}`}>
+                  <span
+                    className={`text-xs ${isOverLimit ? 'text-destructive' : 'text-muted-foreground'}`}
+                  >
                     {remainingChars} characters remaining
                   </span>
                 </div>
@@ -116,4 +118,4 @@ export default function CommentForm({ postId, userId, onCommentAdded }: CommentF
       </Form>
     </Card>
   );
-} 
+}

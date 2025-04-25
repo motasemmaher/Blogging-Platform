@@ -7,11 +7,7 @@ export class CommentService {
   }
 
   // Create a new comment
-  static async createComment(data: {
-    content: string;
-    postId: number;
-    authorId: number;
-  }) {
+  static async createComment(data: { content: string; postId: number; authorId: number }) {
     return CommentModel.create(data);
   }
 
@@ -21,18 +17,18 @@ export class CommentService {
   }
 
   // Check if user is allowed to modify comment
-  static async canModifyComment(commentId: number, userId: number, userRole?: string) {
+  static async canModifyComment(commentId: number, userId: number) {
     const comment = await CommentModel.findById(commentId);
-    
+
     if (!comment) {
       return { allowed: false, reason: 'Comment not found' };
     }
-    
+
     // Regular users can only modify their own comments
     if (comment.author?.id !== userId) {
       return { allowed: false, reason: 'Not authorized to modify this comment' };
     }
-    
+
     return { allowed: true };
   }
-} 
+}

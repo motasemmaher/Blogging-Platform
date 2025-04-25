@@ -16,7 +16,7 @@ let app: express.Application;
 describe('Auth API Integration Tests', () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    
+
     // Use our test app instead of the real one
     app = createTestApp();
   });
@@ -38,13 +38,11 @@ describe('Auth API Integration Tests', () => {
       (TokenModel.createRefreshToken as jest.Mock).mockResolvedValue({ id: 1 });
 
       // Make API request
-      const response = await request(app)
-        .post('/auth/register')
-        .send({
-          name: 'Test User',
-          email: 'test@example.com',
-          password: 'Password123!',
-        });
+      const response = await request(app).post('/auth/register').send({
+        name: 'Test User',
+        email: 'test@example.com',
+        password: 'Password123!',
+      });
 
       // Assertions
       expect(response.status).toBe(201);
@@ -62,13 +60,11 @@ describe('Auth API Integration Tests', () => {
       });
 
       // Make API request
-      const response = await request(app)
-        .post('/auth/register')
-        .send({
-          name: 'Test User',
-          email: 'test@example.com',
-          password: 'Password123!',
-        });
+      const response = await request(app).post('/auth/register').send({
+        name: 'Test User',
+        email: 'test@example.com',
+        password: 'Password123!',
+      });
 
       // Assertions
       expect(response.status).toBe(400);
@@ -92,12 +88,10 @@ describe('Auth API Integration Tests', () => {
       (TokenModel.createRefreshToken as jest.Mock).mockResolvedValue({ id: 1 });
 
       // Make API request
-      const response = await request(app)
-        .post('/auth/login')
-        .send({
-          email: 'test@example.com',
-          password: 'password123',
-        });
+      const response = await request(app).post('/auth/login').send({
+        email: 'test@example.com',
+        password: 'password123',
+      });
 
       // Assertions
       expect(response.status).toBe(200);
@@ -111,12 +105,10 @@ describe('Auth API Integration Tests', () => {
       (UserModel.findByEmail as jest.Mock).mockResolvedValue(null);
 
       // Make API request
-      const response = await request(app)
-        .post('/auth/login')
-        .send({
-          email: 'nonexistent@example.com',
-          password: 'password123',
-        });
+      const response = await request(app).post('/auth/login').send({
+        email: 'nonexistent@example.com',
+        password: 'password123',
+      });
 
       // Assertions
       expect(response.status).toBe(401);
@@ -134,12 +126,10 @@ describe('Auth API Integration Tests', () => {
       (authUtils.comparePassword as jest.Mock).mockResolvedValue(false);
 
       // Make API request
-      const response = await request(app)
-        .post('/auth/login')
-        .send({
-          email: 'test@example.com',
-          password: 'wrong_password',
-        });
+      const response = await request(app).post('/auth/login').send({
+        email: 'test@example.com',
+        password: 'wrong_password',
+      });
 
       // Assertions
       expect(response.status).toBe(401);
@@ -151,7 +141,7 @@ describe('Auth API Integration Tests', () => {
     it('should refresh token successfully', async () => {
       const mockDate = new Date();
       mockDate.setDate(mockDate.getDate() + 1); // 1 day in the future
-      
+
       // Mock return values
       (TokenModel.findByToken as jest.Mock).mockResolvedValue({
         id: 1,
@@ -168,11 +158,9 @@ describe('Auth API Integration Tests', () => {
       (authUtils.generateAccessToken as jest.Mock).mockReturnValue('new_access_token');
 
       // Make API request
-      const response = await request(app)
-        .post('/auth/refresh')
-        .send({
-          refreshToken: 'refresh_token',
-        });
+      const response = await request(app).post('/auth/refresh').send({
+        refreshToken: 'refresh_token',
+      });
 
       // Assertions
       expect(response.status).toBe(200);
@@ -184,11 +172,9 @@ describe('Auth API Integration Tests', () => {
       (TokenModel.findByToken as jest.Mock).mockResolvedValue(null);
 
       // Make API request
-      const response = await request(app)
-        .post('/auth/refresh')
-        .send({
-          refreshToken: 'invalid_token',
-        });
+      const response = await request(app).post('/auth/refresh').send({
+        refreshToken: 'invalid_token',
+      });
 
       // Assertions
       expect(response.status).toBe(401);
@@ -202,15 +188,13 @@ describe('Auth API Integration Tests', () => {
       (TokenModel.deleteToken as jest.Mock).mockResolvedValue(true);
 
       // Make API request
-      const response = await request(app)
-        .post('/auth/logout')
-        .send({
-          refreshToken: 'refresh_token',
-        });
+      const response = await request(app).post('/auth/logout').send({
+        refreshToken: 'refresh_token',
+      });
 
       // Assertions
       expect(response.status).toBe(200);
       expect(response.body).toHaveProperty('message', 'Logged out successfully');
     });
   });
-}); 
+});

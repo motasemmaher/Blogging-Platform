@@ -126,7 +126,7 @@ export class AuthService {
 
     try {
       // Verify token
-      const decoded = verifyToken(refreshToken, true);
+      verifyToken(refreshToken, true);
 
       // Get user
       const user = await UserModel.findById(token.userId);
@@ -150,4 +150,4 @@ export class AuthService {
     await TokenModel.deleteToken(refreshToken);
     return true;
   }
-} 
+}

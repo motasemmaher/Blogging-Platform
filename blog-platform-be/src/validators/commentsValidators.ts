@@ -14,4 +14,4 @@ export const postIdSchema = yup.object({
 // Refresh token validator schema
 export const commentIdSchema = yup.object({
   commentId: yup.number().required('Comment ID is required'),
-}); 
+});

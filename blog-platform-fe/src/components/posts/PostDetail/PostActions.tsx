@@ -14,17 +14,17 @@ export function PostActions({ title }: PostActionsProps) {
 
   const handleLike = () => {
     setIsLiked(!isLiked);
-    setLikeCount(prev => isLiked ? prev - 1 : prev + 1);
+    setLikeCount(prev => (isLiked ? prev - 1 : prev + 1));
   };
 
   return (
     <div className="flex items-center justify-between py-6 border-y border-border my-8">
       <div className="flex items-center space-x-4">
         <Button
-          variant={isLiked ? "default" : "outline"}
+          variant={isLiked ? 'default' : 'outline'}
           size="sm"
           onClick={handleLike}
-          className={isLiked ? "bg-primary text-primary-foreground" : ""}
+          className={isLiked ? 'bg-primary text-primary-foreground' : ''}
         >
           <ThumbsUp className="mr-1 h-4 w-4" />
           {likeCount} Likes
@@ -35,11 +35,13 @@ export function PostActions({ title }: PostActionsProps) {
         size="sm"
         onClick={() => {
           if (navigator.share) {
-            navigator.share({
-              title: title,
-              text: `Check out this post: ${title}`,
-              url: window.location.href,
-            }).catch(err => console.log('Error sharing:', err));
+            navigator
+              .share({
+                title: title,
+                text: `Check out this post: ${title}`,
+                url: window.location.href,
+              })
+              .catch(err => console.log('Error sharing:', err));
           } else {
             navigator.clipboard.writeText(window.location.href);
           }
@@ -50,4 +52,4 @@ export function PostActions({ title }: PostActionsProps) {
       </Button>
     </div>
   );
-} 
+}

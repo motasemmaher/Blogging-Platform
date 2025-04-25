@@ -15,7 +15,7 @@ const pool = new Pool({
 export const db = drizzle(pool, { schema });
 
 // Export a function to check the database connection
-export const checkDbConnection = async () => {
+export const checkDbConnection = async (): Promise<boolean> => {
   try {
     const client = await pool.connect();
     client.release();
@@ -25,4 +25,4 @@ export const checkDbConnection = async () => {
     console.error('Database connection failed:', error);
     return false;
   }
-}; 
+};

@@ -27,13 +27,8 @@ export class PostModel {
         and(
           search ? like(posts.title, `%${search}%`) : undefined,
           or(
-            and(
-              userId ? ne(posts.authorId, userId) : undefined,
-              eq(posts.published, true)
-            ),
-            and(
-              userId ? eq(posts.authorId, userId) : undefined,
-            ),
+            and(userId ? ne(posts.authorId, userId) : undefined, eq(posts.published, true)),
+            and(userId ? eq(posts.authorId, userId) : undefined)
           )
         )
       )
@@ -57,7 +52,7 @@ export class PostModel {
         limit,
         totalPosts,
         totalPages,
-      }
+      },
     };
   }
 
@@ -106,17 +101,16 @@ export class PostModel {
   }
 
   // Update post
-  static async update(postId: number, userId: number, updateData: Partial<Omit<typeof posts.$inferInsert, 'id' | 'authorId'>>) {
+  static async update(
+    postId: number,
+    userId: number,
+    updateData: Partial<Omit<typeof posts.$inferInsert, 'id' | 'authorId'>>
+  ) {
     // Check if post exists and belongs to user
     const existingPost = await db
       .select()
       .from(posts)
-      .where(
-        and(
-          eq(posts.id, postId),
-          eq(posts.authorId, userId)
-        )
-      )
+      .where(and(eq(posts.id, postId), eq(posts.authorId, userId)))
       .limit(1);
 
     if (existingPost.length === 0) {
@@ -141,12 +135,7 @@ export class PostModel {
     const existingPost = await db
       .select()
       .from(posts)
-      .where(
-        and(
-          eq(posts.id, postId),
-          eq(posts.authorId, userId)
-        )
-      )
+      .where(and(eq(posts.id, postId), eq(posts.authorId, userId)))
       .limit(1);
 
     if (existingPost.length === 0) {
@@ -157,4 +146,4 @@ export class PostModel {
     await db.delete(posts).where(eq(posts.id, postId));
     return true;
   }
-} 
+}

@@ -20,7 +20,7 @@ interface PostPaginationProps {
 
 // Helper to generate the page URL
 const getPageUrl = (page: number, searchParam?: string, baseUrl?: string) => {
-  "use client";
+  'use client';
   const url = new URL(`${window.location.origin}/${baseUrl}`);
   url.searchParams.set('page', page.toString());
 
@@ -32,7 +32,12 @@ const getPageUrl = (page: number, searchParam?: string, baseUrl?: string) => {
 };
 
 // Generate the array of page numbers to display
-const getPageItems = (currentPage: number, totalPages: number, searchParam?: string, baseUrl?: string) => {
+const getPageItems = (
+  currentPage: number,
+  totalPages: number,
+  searchParam?: string,
+  baseUrl?: string
+) => {
   const items = [];
 
   // Always show first page
@@ -62,7 +67,10 @@ const getPageItems = (currentPage: number, totalPages: number, searchParam?: str
     if (page > 1 && page < totalPages) {
       items.push(
         <PaginationItem key={`page-${page}`}>
-          <PaginationLink href={getPageUrl(page, searchParam, baseUrl)} isActive={currentPage === page}>
+          <PaginationLink
+            href={getPageUrl(page, searchParam, baseUrl)}
+            isActive={currentPage === page}
+          >
             {page}
           </PaginationLink>
         </PaginationItem>
@@ -96,7 +104,6 @@ const getPageItems = (currentPage: number, totalPages: number, searchParam?: str
   return items;
 };
 
-
 export function PostPagination({
   currentPage,
   totalPages,
@@ -126,4 +133,4 @@ export function PostPagination({
       </PaginationContent>
     </Pagination>
   );
-} 
+}

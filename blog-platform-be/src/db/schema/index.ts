@@ -18,7 +18,9 @@ export const posts = pgTable('posts', {
   title: varchar('title', { length: 255 }).notNull(),
   content: text('content').notNull(),
   published: boolean('published').default(false).notNull(),
-  authorId: integer('author_id').notNull().references(() => users.id, { onDelete: 'cascade' }),
+  authorId: integer('author_id')
+    .notNull()
+    .references(() => users.id, { onDelete: 'cascade' }),
   createdAt: timestamp('created_at').defaultNow().notNull(),
   updatedAt: timestamp('updated_at').defaultNow().notNull(),
 });
@@ -27,18 +29,23 @@ export const posts = pgTable('posts', {
 export const comments = pgTable('comments', {
   id: serial('id').primaryKey(),
   content: text('content').notNull(),
-  postId: integer('post_id').notNull().references(() => posts.id, { onDelete: 'cascade' }),
-  authorId: integer('author_id').notNull().references(() => users.id, { onDelete: 'cascade' }),
+  postId: integer('post_id')
+    .notNull()
+    .references(() => posts.id, { onDelete: 'cascade' }),
+  authorId: integer('author_id')
+    .notNull()
+    .references(() => users.id, { onDelete: 'cascade' }),
   createdAt: timestamp('created_at').defaultNow().notNull(),
   updatedAt: timestamp('updated_at').defaultNow().notNull(),
 });
-
 
 // Refresh tokens table
 export const refreshTokens = pgTable('refresh_tokens', {
   id: serial('id').primaryKey(),
   token: text('token').notNull().unique(),
-  userId: integer('user_id').notNull().references(() => users.id, { onDelete: 'cascade' }),
+  userId: integer('user_id')
+    .notNull()
+    .references(() => users.id, { onDelete: 'cascade' }),
   expires: timestamp('expires').notNull(),
   createdAt: timestamp('created_at').defaultNow().notNull(),
 });
@@ -67,4 +74,3 @@ export const commentsRelations = relations(comments, ({ one }) => ({
     references: [users.id],
   }),
 }));
-

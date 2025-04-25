@@ -42,7 +42,7 @@ export function PostForm({ initialData }: PostFormProps) {
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
   } = useForm<FormValues>({
     resolver: yupResolver(postSchema),
     defaultValues,
@@ -85,25 +85,29 @@ export function PostForm({ initialData }: PostFormProps) {
       <BackButton />
       <Card className="w-full">
         <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl font-bold">{isEditMode ? 'Edit Post' : 'Create Post'}</CardTitle>
+          <CardTitle className="text-2xl font-bold">
+            {isEditMode ? 'Edit Post' : 'Create Post'}
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
             <div className="space-y-2">
-              <Label htmlFor="title" className="text-sm font-medium">Title</Label>
+              <Label htmlFor="title" className="text-sm font-medium">
+                Title
+              </Label>
               <Input
                 id="title"
                 {...register('title')}
                 placeholder="Post title"
                 className="w-full"
               />
-              {errors.title && (
-                <p className="text-sm text-red-500 mt-1">{errors.title.message}</p>
-              )}
+              {errors.title && <p className="text-sm text-red-500 mt-1">{errors.title.message}</p>}
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="content" className="text-sm font-medium">Content</Label>
+              <Label htmlFor="content" className="text-sm font-medium">
+                Content
+              </Label>
               <Textarea
                 id="content"
                 {...register('content')}
@@ -127,11 +131,7 @@ export function PostForm({ initialData }: PostFormProps) {
               </Label>
             </div>
 
-            <Button
-              type="submit"
-              className="w-full"
-              disabled={isSubmitting}
-            >
+            <Button type="submit" className="w-full" disabled={isSubmitting}>
               {isSubmitting ? 'Saving...' : isEditMode ? 'Update Post' : 'Create Post'}
             </Button>
           </form>
@@ -139,4 +139,4 @@ export function PostForm({ initialData }: PostFormProps) {
       </Card>
     </>
   );
-} 
+}

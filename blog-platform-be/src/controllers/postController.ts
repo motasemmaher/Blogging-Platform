@@ -11,7 +11,7 @@ export const getPosts = asyncHandler(async (req: Request, res: Response): Promis
     const userId = req.user?.id;
 
     const result = await PostService.getAllPosts(page, limit, search, userId);
-    
+
     res.status(200).json({
       success: true,
       data: result,
@@ -27,7 +27,7 @@ export const getPostById = asyncHandler(async (req: Request, res: Response): Pro
   try {
     const postId = Number(req.params.id);
     const post = await PostService.getPostById(postId);
-    
+
     res.status(200).json({
       success: true,
       data: post,
@@ -47,7 +47,7 @@ export const createPost = asyncHandler(async (req: Request, res: Response): Prom
 
   try {
     const { title, content, published, categoryIds } = req.body;
-    
+
     const post = await PostService.createPost({
       title,
       content,
@@ -55,7 +55,7 @@ export const createPost = asyncHandler(async (req: Request, res: Response): Prom
       authorId: req.user.id,
       categoryIds,
     });
-    
+
     res.status(201).json({
       success: true,
       data: post,
@@ -76,14 +76,14 @@ export const updatePost = asyncHandler(async (req: Request, res: Response): Prom
   try {
     const postId = Number(req.params.id);
     const { title, content, published, categoryIds } = req.body;
-    
+
     const updatedPost = await PostService.updatePost(postId, req.user.id, {
       title,
       content,
       published,
       categoryIds,
     });
-    
+
     res.status(200).json({
       success: true,
       data: updatedPost,
@@ -104,7 +104,7 @@ export const deletePost = asyncHandler(async (req: Request, res: Response): Prom
   try {
     const postId = Number(req.params.id);
     await PostService.deletePost(postId, req.user.id);
-    
+
     res.status(200).json({
       success: true,
       message: 'Post deleted successfully',
@@ -113,4 +113,4 @@ export const deletePost = asyncHandler(async (req: Request, res: Response): Prom
     res.status(404);
     throw error;
   }
-}); 
+});

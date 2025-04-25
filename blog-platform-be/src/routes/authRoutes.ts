@@ -25,4 +25,4 @@ router.post('/refresh', validateRequest(refreshTokenSchema), refreshAccessToken)
 // @access  Public
 router.post('/logout', validateRequest(refreshTokenSchema), logout);
 
-export default router; 
+export default router;

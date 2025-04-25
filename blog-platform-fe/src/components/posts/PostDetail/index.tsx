@@ -16,21 +16,17 @@ interface PostDetailProps {
   comments: Comment[];
 }
 
-export function PostDetail({
-  post,
-  readTime = '5 min',
-  comments
-}: PostDetailProps) {
+export function PostDetail({ post, readTime = '5 min', comments }: PostDetailProps) {
   return (
     <CommentsProvider comments={comments}>
       <BackButton />
-      
+
       <PostHeader post={post} readTime={readTime} />
-      
+
       <PostContent content={post.content} />
-      
+
       <PostActions title={post.title} />
-      
+
       <CommentsSection postId={post.id!} />
     </CommentsProvider>
   );

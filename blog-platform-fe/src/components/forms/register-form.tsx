@@ -7,8 +7,22 @@ import { registerSchema } from '@/lib/validators/auth';
 import { useAuth } from '@/contexts/auth-context';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form';
 import { MessageError } from '@/lib/types/comments';
 import { toast } from 'sonner';
 
@@ -105,12 +119,10 @@ export function RegisterForm() {
                 </FormItem>
               )}
             />
-            {error && (<p
-              data-slot="form-message"
-              className="text-destructive text-sm"
-            >
-              {error}
-            </p>
+            {error && (
+              <p data-slot="form-message" className="text-destructive text-sm">
+                {error}
+              </p>
             )}
             <Button type="submit" className="w-full" loading={isLoading}>
               Register
@@ -120,7 +132,7 @@ export function RegisterForm() {
       </CardContent>
       <CardFooter className="flex justify-center">
         <p className="text-sm text-muted-foreground">
-          Already have an account?{' '}
+          Already have an account?
           <a href="/auth/login" className="text-primary hover:underline">
             Login
           </a>
@@ -128,4 +140,4 @@ export function RegisterForm() {
       </CardFooter>
     </Card>
   );
-} 
+}

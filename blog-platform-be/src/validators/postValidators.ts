@@ -19,12 +19,10 @@ export const updatePostSchema = yup.object({
 // Get post by ID validator schema
 export const getPostByIdSchema = yup.object({
   id: yup.number().required('Post ID is required'),
-}); 
+});
 
 export const getPostsQuerySchema = yup.object({
   search: yup.string().optional(),
   page: yup.number().optional(),
   limit: yup.number().optional(),
-}); 
-
-
+});

@@ -4,4 +4,4 @@ export const mockAuthUtils = {
   generateAccessToken: jest.fn().mockReturnValue('mocked_access_token'),
   generateRefreshToken: jest.fn().mockReturnValue('mocked_refresh_token'),
   verifyToken: jest.fn().mockReturnValue({ userId: 1 }),
-}; 
+};

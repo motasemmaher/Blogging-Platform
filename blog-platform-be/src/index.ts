@@ -12,24 +12,26 @@ const app = express();
 const PORT = parseInt(process.env.PORT || '3001', 10);
 
 // Middleware
-app.use(cors({
-  origin: '*', // Allow requests from any origin
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
-  credentials: false // Set to false to allow all origins
-}));
+app.use(
+  cors({
+    origin: '*', // Allow requests from any origin
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+    credentials: false, // Set to false to allow all origins
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Check database connection
 checkDbConnection()
-  .then((connected) => {
+  .then(connected => {
     if (!connected) {
       console.error('Database connection failed. Exiting application.');
       process.exit(1);
     }
   })
-  .catch((error) => {
+  .catch(error => {
     console.error('Database connection error:', error);
     process.exit(1);
   });
@@ -55,4 +57,4 @@ app.use(errorHandler);
 app.listen(PORT, () => {
   console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
   console.log(`API available at http://localhost:${PORT}`);
-}); 
+});

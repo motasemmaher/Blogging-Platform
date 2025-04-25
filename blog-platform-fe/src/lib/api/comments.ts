@@ -14,17 +14,15 @@ export const commentsApi = {
     return response.data;
   },
 
-  
   // Create new comment
   createComment: async (data: CreateCommentData) => {
     const response = await apiClient.post(`/posts/${data.postId}/comments`, data);
     return response.data;
   },
 
-  
   // Delete comment
   deleteComment: async (postId: number, commentId: number) => {
     const response = await apiClient.delete(`/posts/${postId}/comments/${commentId}`);
     return response.data;
   },
-}; 
+};

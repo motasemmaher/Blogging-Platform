@@ -2,7 +2,6 @@ import axios from 'axios';
 import { getCookie } from '../utils/cookies';
 
 const getAxiosInstance = () => {
-
   // Create an axios instance
   const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
   const apiClient = axios.create({
@@ -14,7 +13,7 @@ const getAxiosInstance = () => {
 
   // Add a request interceptor
   apiClient.interceptors.request.use(
-    (config) => {
+    config => {
       // Get the token from local storage if it exists
       if (typeof window !== 'undefined') {
         const accessToken = getCookie('token');
@@ -24,7 +23,7 @@ const getAxiosInstance = () => {
       }
       return config;
     },
-    (error) => Promise.reject(error)
+    error => Promise.reject(error)
   );
 
   return apiClient;

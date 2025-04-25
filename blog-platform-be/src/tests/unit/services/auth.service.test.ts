@@ -169,7 +169,7 @@ describe('AuthService', () => {
     it('should refresh token successfully', async () => {
       const mockDate = new Date();
       mockDate.setDate(mockDate.getDate() + 1); // 1 day in the future
-      
+
       // Mock return values
       (TokenModel.findByToken as jest.Mock).mockResolvedValue({
         id: 1,
@@ -203,13 +203,15 @@ describe('AuthService', () => {
       (TokenModel.findByToken as jest.Mock).mockResolvedValue(null);
 
       // Assertions
-      await expect(AuthService.refreshToken('invalid_token')).rejects.toThrow('Invalid refresh token');
+      await expect(AuthService.refreshToken('invalid_token')).rejects.toThrow(
+        'Invalid refresh token'
+      );
     });
 
     it('should throw an error if token is expired', async () => {
       const expiredDate = new Date();
       expiredDate.setDate(expiredDate.getDate() - 1); // 1 day in the past
-      
+
       // Mock return values
       (TokenModel.findByToken as jest.Mock).mockResolvedValue({
         id: 1,
@@ -219,7 +221,9 @@ describe('AuthService', () => {
       });
 
       // Assertions
-      await expect(AuthService.refreshToken('refresh_token')).rejects.toThrow('Refresh token expired');
+      await expect(AuthService.refreshToken('refresh_token')).rejects.toThrow(
+        'Refresh token expired'
+      );
       expect(TokenModel.deleteById).toHaveBeenCalledWith(1);
     });
   });
@@ -237,4 +241,4 @@ describe('AuthService', () => {
       expect(result).toBe(true);
     });
   });
-}); 
+});

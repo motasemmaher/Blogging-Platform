@@ -14,4 +14,4 @@ export function CommentsSection({ postId }: CommentsSectionProps) {
       <CommentSection postId={postId} />
     </div>
   );
-} 
+}

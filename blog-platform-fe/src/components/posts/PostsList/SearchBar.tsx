@@ -13,19 +13,19 @@ export function SearchBar() {
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    
+
     // Create new URL with search query
     const params = new URLSearchParams(searchParams);
-    
+
     if (searchQuery) {
       params.set('search', searchQuery);
     } else {
       params.delete('search');
     }
-    
+
     // Reset to page 1 when searching
     params.set('page', '1');
-    
+
     router.push(`/posts?${params.toString()}`);
   };
 
@@ -35,7 +35,7 @@ export function SearchBar() {
         type="search"
         placeholder="Search posts..."
         value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
+        onChange={e => setSearchQuery(e.target.value)}
         className="flex-1"
       />
       <Button type="submit" size="sm">
@@ -44,4 +44,4 @@ export function SearchBar() {
       </Button>
     </form>
   );
-} 
+}

@@ -17,7 +17,7 @@ let authToken: string;
 describe('Post API Integration Tests', () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    
+
     // Use our test app instead of the real one
     app = createTestApp();
 
@@ -68,9 +68,7 @@ describe('Post API Integration Tests', () => {
 
     it('should filter posts by search query', async () => {
       // Mock data
-      const mockPosts = [
-        { id: 1, title: 'Matching Post', content: 'Content 1' },
-      ];
+      const mockPosts = [{ id: 1, title: 'Matching Post', content: 'Content 1' }];
 
       // Mock return value
       (PostModel.findAll as jest.Mock).mockResolvedValue({
@@ -87,7 +85,12 @@ describe('Post API Integration Tests', () => {
       // Assertions
       expect(response.status).toBe(200);
       expect(response.body.data.posts).toHaveLength(1);
-      expect(PostModel.findAll).toHaveBeenCalledWith(expect.anything(), expect.anything(), 'Matching', undefined);
+      expect(PostModel.findAll).toHaveBeenCalledWith(
+        expect.anything(),
+        expect.anything(),
+        'Matching',
+        undefined
+      );
     });
   });
 
@@ -135,13 +138,10 @@ describe('Post API Integration Tests', () => {
       (PostModel.create as jest.Mock).mockResolvedValue(mockPost);
 
       // Make API request
-      const response = await request(app)
-        .post('/posts')
-        .set('Authorization', authToken)
-        .send({
-          title: 'New Post',
-          content: 'New Content',
-        });
+      const response = await request(app).post('/posts').set('Authorization', authToken).send({
+        title: 'New Post',
+        content: 'New Content',
+      });
 
       // Assertions
       expect(response.status).toBe(201);
@@ -150,12 +150,10 @@ describe('Post API Integration Tests', () => {
 
     it('should return 401 if not authenticated', async () => {
       // Make API request without auth token
-      const response = await request(app)
-        .post('/posts')
-        .send({
-          title: 'New Post',
-          content: 'New Content',
-        });
+      const response = await request(app).post('/posts').send({
+        title: 'New Post',
+        content: 'New Content',
+      });
 
       // Assertions
       expect(response.status).toBe(401);
@@ -176,14 +174,11 @@ describe('Post API Integration Tests', () => {
       (PostModel.update as jest.Mock).mockResolvedValue(mockUpdatedPost);
 
       // Make API request
-      const response = await request(app)
-        .put('/posts/1')
-        .set('Authorization', authToken)
-        .send({
-          title: 'Updated Post',
-          content: 'Updated Content',
-          published: true,
-        });
+      const response = await request(app).put('/posts/1').set('Authorization', authToken).send({
+        title: 'Updated Post',
+        content: 'Updated Content',
+        published: true,
+      });
 
       // Assertions
       expect(response.status).toBe(200);
@@ -195,16 +190,16 @@ describe('Post API Integration Tests', () => {
       (PostModel.update as jest.Mock).mockResolvedValue(null);
 
       // Make API request
-      const response = await request(app)
-        .put('/posts/999')
-        .set('Authorization', authToken)
-        .send({
-          title: 'Updated Post',
-        });
+      const response = await request(app).put('/posts/999').set('Authorization', authToken).send({
+        title: 'Updated Post',
+      });
 
       // Assertions
       expect(response.status).toBe(404);
-      expect(response.body).toHaveProperty('message', 'Post not found or you are not authorized to update this post');
+      expect(response.body).toHaveProperty(
+        'message',
+        'Post not found or you are not authorized to update this post'
+      );
     });
   });
 
@@ -214,9 +209,7 @@ describe('Post API Integration Tests', () => {
       (PostModel.delete as jest.Mock).mockResolvedValue(true);
 
       // Make API request
-      const response = await request(app)
-        .delete('/posts/1')
-        .set('Authorization', authToken);
+      const response = await request(app).delete('/posts/1').set('Authorization', authToken);
 
       // Assertions
       expect(response.status).toBe(200);
@@ -228,13 +221,14 @@ describe('Post API Integration Tests', () => {
       (PostModel.delete as jest.Mock).mockResolvedValue(false);
 
       // Make API request
-      const response = await request(app)
-        .delete('/posts/999')
-        .set('Authorization', authToken);
+      const response = await request(app).delete('/posts/999').set('Authorization', authToken);
 
       // Assertions
       expect(response.status).toBe(404);
-      expect(response.body).toHaveProperty('message', 'Post not found or you are not authorized to delete this post');
+      expect(response.body).toHaveProperty(
+        'message',
+        'Post not found or you are not authorized to delete this post'
+      );
     });
   });
-}); 
+});

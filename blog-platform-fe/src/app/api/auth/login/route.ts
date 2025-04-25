@@ -15,12 +15,12 @@ export async function POST(request: NextRequest) {
     // Set the token in a secure HTTP-only cookie
     cookieStore.set('token', response.data.data.accessToken);
     cookieStore.set('user', JSON.stringify(response.data.data.user));
-    
+
     return NextResponse.json(response.data);
   } catch (error) {
     return NextResponse.json(
-      { error: (error as MessageErrorSSR).response.data.message || "Invalid credentials" },
+      { error: (error as MessageErrorSSR).response.data.message || 'Invalid credentials' },
       { status: (error as MessageErrorSSR).status || 500 }
     );
   }
-} 
+}

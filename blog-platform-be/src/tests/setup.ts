@@ -21,4 +21,4 @@ jest.mock('../db', () => ({
     delete: jest.fn().mockReturnThis(),
   },
   checkDbConnection: jest.fn().mockResolvedValue(true),
-})); 
+}));

@@ -15,8 +15,12 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(response.data);
   } catch (error) {
     return NextResponse.json(
-      { error: (error as MessageErrorSSR).response.data.message || 'An error occurred during registration' },
+      {
+        error:
+          (error as MessageErrorSSR).response.data.message ||
+          'An error occurred during registration',
+      },
       { status: (error as MessageErrorSSR).status || 500 }
     );
   }
-} 
+}

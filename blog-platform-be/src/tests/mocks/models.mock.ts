@@ -30,4 +30,4 @@ export const mockTokenModel = {
   findByToken: jest.fn(),
   deleteById: jest.fn(),
   deleteToken: jest.fn(),
-}; 
+};

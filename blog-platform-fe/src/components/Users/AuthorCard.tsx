@@ -14,9 +14,7 @@ export default function AuthorCard({ author }: AuthorCardProps) {
     <div className="flex items-center space-x-3">
       <div className="flex-shrink-0">
         <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center">
-          <span className="text-gray-500 text-sm font-semibold">
-            {author.name.charAt(0)}
-          </span>
+          <span className="text-gray-500 text-sm font-semibold">{author.name.charAt(0)}</span>
         </div>
       </div>
       <div>
@@ -25,4 +23,4 @@ export default function AuthorCard({ author }: AuthorCardProps) {
       </div>
     </div>
   );
-} 
+}

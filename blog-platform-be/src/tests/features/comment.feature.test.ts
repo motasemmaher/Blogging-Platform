@@ -17,7 +17,7 @@ let authToken: string;
 describe('Comment API Integration Tests', () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    
+
     // Use our test app instead of the real one
     app = createTestApp();
 
@@ -77,7 +77,7 @@ describe('Comment API Integration Tests', () => {
         .set('Authorization', authToken)
         .send({
           content: 'New Comment',
-          postId: 1
+          postId: 1,
         });
 
       // Assertions
@@ -92,11 +92,9 @@ describe('Comment API Integration Tests', () => {
 
     it('should return 401 if not authenticated', async () => {
       // Make API request without auth token
-      const response = await request(app)
-        .post('/posts/1/comments')
-        .send({
-          content: 'New Comment',
-        });
+      const response = await request(app).post('/posts/1/comments').send({
+        content: 'New Comment',
+      });
 
       // Assertions
       expect(response.status).toBe(401);
@@ -165,4 +163,4 @@ describe('Comment API Integration Tests', () => {
       expect(response.body).toHaveProperty('message', 'Not authorized to modify this comment');
     });
   });
-}); 
+});

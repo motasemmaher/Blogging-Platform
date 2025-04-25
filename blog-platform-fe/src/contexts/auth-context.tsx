@@ -29,7 +29,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       try {
         // Check if token exists in local storage
         const isLoggedIn = authApi.isLoggedIn();
-        
+
         if (!isLoggedIn) {
           setUser(null);
           return;
@@ -74,7 +74,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setIsLoading(true);
     try {
       const response = await authApi.register({ name, email, password });
-      
+
       if (response.success) {
         setUser(response.data.user);
         // Store user data in local storage
@@ -121,4 +121,4 @@ export function useAuth() {
     throw new Error('useAuth must be used within an AuthProvider');
   }
   return context;
-} 
+}

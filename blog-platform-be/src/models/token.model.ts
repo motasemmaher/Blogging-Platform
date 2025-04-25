@@ -4,11 +4,7 @@ import { refreshTokens } from '../db/schema';
 
 export class TokenModel {
   // Create refresh token
-  static async createRefreshToken(data: {
-    token: string;
-    userId: number;
-    expires: Date;
-  }) {
+  static async createRefreshToken(data: { token: string; userId: number; expires: Date }) {
     const result = await db
       .insert(refreshTokens)
       .values({
@@ -16,7 +12,7 @@ export class TokenModel {
         createdAt: new Date(),
       })
       .returning();
-    
+
     return result.length > 0 ? result[0] : null;
   }
 
@@ -27,7 +23,7 @@ export class TokenModel {
       .from(refreshTokens)
       .where(eq(refreshTokens.token, token))
       .limit(1);
-    
+
     return result.length > 0 ? result[0] : null;
   }
 
@@ -48,4 +44,4 @@ export class TokenModel {
     await db.delete(refreshTokens).where(eq(refreshTokens.userId, userId));
     return true;
   }
-} 
+}

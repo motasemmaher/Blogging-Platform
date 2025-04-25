@@ -19,13 +19,15 @@ interface CommentItemProps {
 export default function CommentItem({ comment, currentUser, onDelete }: CommentItemProps) {
   const [isDeleting, setIsDeleting] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
-  
+
   const isAuthor = currentUser && currentUser.id === comment.author.id;
-  const formattedDate = formatDistance(new Date(comment.createdAt), new Date(), { addSuffix: true });
-  
+  const formattedDate = formatDistance(new Date(comment.createdAt), new Date(), {
+    addSuffix: true,
+  });
+
   const handleDelete = async () => {
     if (!comment.id) return;
-    
+
     try {
       setIsDeleting(true);
       await axios.delete(`/api/comments/${comment.id}`);
@@ -37,7 +39,7 @@ export default function CommentItem({ comment, currentUser, onDelete }: CommentI
       setShowDeleteConfirm(false);
     }
   };
-  
+
   return (
     <Card className="bg-card border border-border">
       <CardContent className="pt-6">
@@ -53,11 +55,11 @@ export default function CommentItem({ comment, currentUser, onDelete }: CommentI
               <div className="text-xs text-muted-foreground">{formattedDate}</div>
             </div>
           </div>
-          
+
           {isAuthor && !showDeleteConfirm && (
-            <Button 
-              variant="ghost" 
-              size="sm" 
+            <Button
+              variant="ghost"
+              size="sm"
               className="h-8 w-8 p-0"
               onClick={() => setShowDeleteConfirm(true)}
             >
@@ -65,32 +67,25 @@ export default function CommentItem({ comment, currentUser, onDelete }: CommentI
             </Button>
           )}
         </div>
-        
-        <div className="mt-4 text-sm">
-          {comment.content}
-        </div>
-        
+
+        <div className="mt-4 text-sm">{comment.content}</div>
+
         {showDeleteConfirm && (
           <div className="mt-4 border-t pt-4">
             <p className="text-sm mb-2 text-muted-foreground">
               Delete this comment? This action cannot be undone.
             </p>
             <div className="flex gap-2 justify-end">
-              <Button 
-                variant="outline" 
-                size="sm" 
+              <Button
+                variant="outline"
+                size="sm"
                 onClick={() => setShowDeleteConfirm(false)}
                 disabled={isDeleting}
               >
                 Cancel
               </Button>
-              <Button 
-                variant="destructive" 
-                size="sm" 
-                onClick={handleDelete}
-                disabled={isDeleting}
-              >
-                {isDeleting ? "Deleting..." : "Delete"}
+              <Button variant="destructive" size="sm" onClick={handleDelete} disabled={isDeleting}>
+                {isDeleting ? 'Deleting...' : 'Delete'}
               </Button>
             </div>
           </div>
@@ -98,4 +93,4 @@ export default function CommentItem({ comment, currentUser, onDelete }: CommentI
       </CardContent>
     </Card>
   );
-} 
+}

@@ -42,16 +42,16 @@ jobs:
         cache: 'npm'
 
     - name: Install backend dependencies
-      working-directory: ./blog-platform-be
-      run: npm ci
+      # working-directory: ./blog-platform-be
+      run: cd blog-platform-be && npm ci
 
     - name: Run backend ESLint
-      working-directory: ./blog-platform-be
-      run: npm run lint
+      # working-directory: ./blog-platform-be
+      run: cd blog-platform-be && npm run lint
 
     - name: Run backend tests
-      working-directory: ./blog-platform-be
-      run: npm run test
+      # working-directory: ./blog-platform-be
+      run: cd blog-platform-be && npm run test
       env:
         DATABASE_URL: ${{ secrets.DATABASE_URL }}
         NODE_ENV: ${{ env.NODE_ENV }}

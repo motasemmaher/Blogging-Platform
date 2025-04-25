@@ -17,6 +17,14 @@ jobs:
     name: Backend
     runs-on: ubuntu-latest
 
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      NODE_ENV: ${{ env.NODE_ENV }}
+      JWT_SECRET: ${{ secrets.JWT_SECRET }}
+      JWT_REFRESH_SECRET: ${{ secrets.JWT_REFRESH_SECRET }}
+      PORT: ${{ env.BACKEND_PORT }}
+      JWT_EXPIRE: ${{ env.JWT_EXPIRE }}
+
     # services:
     #   postgres:
     #     image: postgres:latest
@@ -52,12 +60,7 @@ jobs:
     - name: Run backend tests
       working-directory: ./blog-platform-be
       run: npm run test
-      env:
-        DATABASE_URL: ${{ secrets.DATABASE_URL }}
-        NODE_ENV: ${{ env.NODE_ENV }}
-        JWT_SECRET: ${{ secrets.JWT_SECRET }}
-        JWT_REFRESH_SECRET: ${{ secrets.JWT_REFRESH_SECRET }}
-        PORT: ${{ env.BACKEND_PORT }}
+
 
   frontend:
     name: Frontend

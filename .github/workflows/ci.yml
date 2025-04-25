@@ -43,7 +43,7 @@ jobs:
 
     - name: Install backend dependencies
       working-directory: ./blog-platform-be
-      run: npm install
+      run: npm ci
 
     - name: Run backend ESLint
       working-directory: ./blog-platform-be
@@ -75,7 +75,7 @@ jobs:
 
     - name: Install frontend dependencies
       working-directory: ./blog-platform-fe
-      run: npm install
+      run: npm ci
 
     - name: Run frontend ESLint
       working-directory: ./blog-platform-fe

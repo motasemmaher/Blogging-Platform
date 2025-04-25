@@ -46,7 +46,7 @@ export const deleteComment = async (req: Request, res: Response): Promise<void> 
     }
 
     // Check if user can modify the comment
-    const permission = await CommentService.canModifyComment(commentId, req.user.id, req.user.role);
+    const permission = await CommentService.canModifyComment(commentId, req.user.id);
 
     if (!permission.allowed) {
       if (permission.reason === 'Comment not found') {

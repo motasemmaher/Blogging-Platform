@@ -1,4 +1,5 @@
 import { PostModel } from '../models/post.model';
+import { AppError } from '../utils/AppError';
 
 interface CreatePostData {
   title: string;
@@ -30,7 +31,7 @@ export class PostService {
   static async getPostById(postId: number) {
     const post = await PostModel.findById(postId);
     if (!post) {
-      throw new Error('Post not found');
+      throw new AppError('Post not found', 404);
     }
     return post;
   }
@@ -46,7 +47,7 @@ export class PostService {
     });
 
     if (!post) {
-      throw new Error('Failed to create post');
+      throw new AppError('Failed to create post', 400);
     }
 
     return post;
@@ -58,7 +59,7 @@ export class PostService {
     const updatedPost = await PostModel.update(postId, userId, updateData);
 
     if (!updatedPost) {
-      throw new Error('Post not found or you are not authorized to update this post');
+      throw new AppError('Post not found or you are not authorized to update this post', 404);
     }
 
     return updatedPost;
@@ -69,7 +70,7 @@ export class PostService {
     const deleted = await PostModel.delete(postId, userId);
 
     if (!deleted) {
-      throw new Error('Post not found or you are not authorized to delete this post');
+      throw new AppError('Post not found or you are not authorized to delete this post', 404);
     }
 
     return true;

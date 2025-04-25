@@ -7,6 +7,7 @@ import {
   generateRefreshToken,
   verifyToken,
 } from '../utils/auth';
+import { AppError } from '../utils/AppError';
 
 interface RegisterData {
   name: string;
@@ -25,7 +26,7 @@ export class AuthService {
     // Check if user exists
     const existingUser = await UserModel.findByEmail(userData.email);
     if (existingUser) {
-      throw new Error('User already exists');
+      throw new AppError('User already exists', 400);
     }
 
     // Hash password
@@ -40,7 +41,7 @@ export class AuthService {
     });
 
     if (!user) {
-      throw new Error('Failed to create user');
+      throw new AppError('Failed to create user', 500);
     }
 
     // Generate tokens
@@ -74,13 +75,13 @@ export class AuthService {
     // Check if user exists
     const user = await UserModel.findByEmail(loginData.email);
     if (!user) {
-      throw new Error('Invalid email or password');
+      throw new AppError('Invalid email or password', 401);
     }
 
     // Check password
     const isPasswordValid = await comparePassword(loginData.password, user.password);
     if (!isPasswordValid) {
-      throw new Error('Invalid email or password');
+      throw new AppError('Invalid email or password', 401);
     }
 
     // Generate tokens
@@ -114,14 +115,14 @@ export class AuthService {
     // Check if token exists in database
     const token = await TokenModel.findByToken(refreshToken);
     if (!token) {
-      throw new Error('Invalid refresh token');
+      throw new AppError('Invalid refresh token', 401);
     }
 
     // Check if token is expired
     if (new Date() > token.expires) {
       // Delete expired token
       await TokenModel.deleteById(token.id);
-      throw new Error('Refresh token expired');
+      throw new AppError('Refresh token expired', 401);
     }
 
     try {
@@ -141,7 +142,7 @@ export class AuthService {
         accessToken: newAccessToken,
       };
     } catch (error) {
-      throw new Error('Invalid refresh token');
+      throw new AppError('Invalid refresh token', 401);
     }
   }
 

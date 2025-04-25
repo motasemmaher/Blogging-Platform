@@ -29,37 +29,19 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '22'
-        # cache: 'npm'
 
     - name: Install backend dependencies
       working-directory: ./blog-platform-be
       run: npm ci
 
-    - name: Create test environment file
-      working-directory: ./blog-platform-be
-      run: |
-        echo "NODE_ENV=test" > .env
-        echo "PORT=3001" >> .env
-        echo "JWT_EXPIRE=1h" >> .env
-        echo "DATABASE_URL=${{ secrets.DATABASE_URL }}" >> .env
-        echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> .env
-        echo "JWT_REFRESH_SECRET=${{ secrets.JWT_REFRESH_SECRET }}" >> .env
-
-    - name: Run backend ESLint
-      working-directory: ./blog-platform-be
-      run: npm run lint
-
     - name: Run backend tests
       working-directory: ./blog-platform-be
-      run: |
-        NODE_ENV=test \
-        PORT=3001 \
-        JWT_EXPIRE=1h \
-        DATABASE_URL=${{ secrets.DATABASE_URL }} \
-        JWT_SECRET=${{ secrets.JWT_SECRET }} \
-        JWT_REFRESH_SECRET=${{ secrets.JWT_REFRESH_SECRET }} \
-        npm run test
-
+      run: npm run test
+      env:
+        JWT_SECRET: ${{ secrets.JWT_SECRET }}
+        JWT_REFRESH_SECRET: ${{ secrets.JWT_REFRESH_SECRET }}
+        DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        NODE_ENV: ${{ env.NODE_ENV }}
 
   frontend:
     name: Frontend

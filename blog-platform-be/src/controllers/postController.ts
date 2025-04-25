@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import asyncHandler from 'express-async-handler';
 import { PostService } from '../services/post.service';
+import { AppError } from '../utils/AppError';
 
 // Get all posts
 export const getPosts = asyncHandler(async (req: Request, res: Response): Promise<void> => {
@@ -17,8 +18,7 @@ export const getPosts = asyncHandler(async (req: Request, res: Response): Promis
       data: result,
     });
   } catch (error) {
-    res.status(500);
-    throw error;
+    throw new AppError('Failed to fetch posts', 500);
   }
 });
 
@@ -33,16 +33,14 @@ export const getPostById = asyncHandler(async (req: Request, res: Response): Pro
       data: post,
     });
   } catch (error) {
-    res.status(404);
-    throw error;
+    throw new AppError('Post not found', 404);
   }
 });
 
 // Create new post
 export const createPost = asyncHandler(async (req: Request, res: Response): Promise<void> => {
   if (!req.user) {
-    res.status(401);
-    throw new Error('User not authenticated');
+    throw new AppError('User not authenticated', 401);
   }
 
   try {
@@ -61,16 +59,14 @@ export const createPost = asyncHandler(async (req: Request, res: Response): Prom
       data: post,
     });
   } catch (error) {
-    res.status(400);
-    throw error;
+    throw new AppError('Failed to create post', 400);
   }
 });
 
 // Update post
 export const updatePost = asyncHandler(async (req: Request, res: Response): Promise<void> => {
   if (!req.user) {
-    res.status(401);
-    throw new Error('User not authenticated');
+    throw new AppError('User not authenticated', 401);
   }
 
   try {
@@ -89,16 +85,14 @@ export const updatePost = asyncHandler(async (req: Request, res: Response): Prom
       data: updatedPost,
     });
   } catch (error) {
-    res.status(404);
-    throw error;
+    throw new AppError('Post not found or you are not authorized to update this post', 404);
   }
 });
 
 // Delete post
 export const deletePost = asyncHandler(async (req: Request, res: Response): Promise<void> => {
   if (!req.user) {
-    res.status(401);
-    throw new Error('User not authenticated');
+    throw new AppError('User not authenticated', 401);
   }
 
   try {
@@ -110,7 +104,6 @@ export const deletePost = asyncHandler(async (req: Request, res: Response): Prom
       message: 'Post deleted successfully',
     });
   } catch (error) {
-    res.status(404);
-    throw error;
+    throw new AppError('Post not found or you are not authorized to delete this post', 404);
   }
 });

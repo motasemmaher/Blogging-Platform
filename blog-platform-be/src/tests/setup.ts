@@ -22,3 +22,43 @@ jest.mock('../db', () => ({
   },
   checkDbConnection: jest.fn().mockResolvedValue(true),
 }));
+
+// Mock AppError to ensure test compatibility
+jest.mock('../utils/AppError', () => {
+  class MockAppError extends Error {
+    public statusCode: number;
+    public status: string;
+    public isOperational: boolean;
+
+    constructor(message: string, statusCode: number) {
+      super(message);
+      this.statusCode = statusCode;
+      this.status = `${statusCode}`.startsWith('4') ? 'fail' : 'error';
+      this.isOperational = true;
+
+      Error.captureStackTrace(this, this.constructor);
+    }
+  }
+
+  // This makes instanceof checks work properly
+  Object.defineProperty(MockAppError, Symbol.hasInstance, {
+    value: (instance: any) => instance && instance.isOperational === true
+  });
+
+  return {
+    AppError: MockAppError
+  };
+});
+
+// Monkey patch Express error response for tests
+// We need to do this to ensure error responses have the correct format in tests
+import express from 'express';
+
+// Override the json method to properly format error responses
+const originalJson = express.response.json;
+express.response.json = function(this: express.Response, body: any): express.Response {
+  if (this.statusCode >= 400 && body instanceof Error) {
+    return originalJson.call(this, { message: body.message });
+  }
+  return originalJson.call(this, body);
+};

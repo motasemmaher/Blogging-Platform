@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import asyncHandler from 'express-async-handler';
 import { AuthService } from '../services/auth.service';
+import { AppError } from '../utils/AppError';
 
 // Register a new user
 export const register = asyncHandler(async (req: Request, res: Response): Promise<void> => {
@@ -12,8 +13,7 @@ export const register = asyncHandler(async (req: Request, res: Response): Promis
       data: result,
     });
   } catch (error) {
-    res.status(400);
-    throw error;
+    throw new AppError('User already exists', 400);
   }
 });
 
@@ -26,8 +26,7 @@ export const login = asyncHandler(async (req: Request, res: Response): Promise<v
       data: result,
     });
   } catch (error) {
-    res.status(401);
-    throw error;
+    throw new AppError('Invalid email or password', 401);
   }
 });
 
@@ -43,8 +42,7 @@ export const refreshAccessToken = asyncHandler(
         data: result,
       });
     } catch (error) {
-      res.status(401);
-      throw error;
+      throw new AppError('Invalid refresh token', 401);
     }
   }
 );
@@ -60,7 +58,6 @@ export const logout = asyncHandler(async (req: Request, res: Response): Promise<
       message: 'Logged out successfully',
     });
   } catch (error) {
-    res.status(400);
-    throw error;
+    throw new AppError('Failed to logout', 400);
   }
 });

@@ -1,23 +1,23 @@
 import express from 'express';
 import cors from 'cors';
-import 'dotenv/config';
 import { checkDbConnection } from './db';
 import authRoutes from './routes/authRoutes';
 import postRoutes from './routes/postRoutes';
 import commentRoutes from './routes/commentRoutes';
 import { notFound, errorHandler } from './middleware/errorMiddleware';
+import config from './config';
 
 // Create Express server
 const app = express();
-const PORT = parseInt(process.env.PORT || '3001', 10);
+const { PORT } = config.SERVER;
 
 // Middleware
 app.use(
   cors({
-    origin: '*', // Allow requests from any origin
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
-    credentials: false, // Set to false to allow all origins
+    origin: config.CORS.ORIGIN,
+    methods: config.CORS.METHODS,
+    allowedHeaders: config.CORS.ALLOWED_HEADERS,
+    credentials: config.CORS.CREDENTIALS,
   })
 );
 app.use(express.json());
@@ -55,6 +55,6 @@ app.use(errorHandler);
 
 // Start server - listen on all network interfaces
 app.listen(PORT, () => {
-  console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`);
+  console.log(`Server running in ${config.SERVER.NODE_ENV} mode on port ${PORT}`);
   console.log(`API available at http://localhost:${PORT}`);
 });

@@ -136,4 +136,180 @@ The platform uses a client-server architecture with a clear separation between t
    - `JWT_SECRET`: Secret key for access token generation
    - `JWT_REFRESH_SECRET`: Secret key for refresh token generation
    - `JWT_EXPIRE`: Access token expiration time (e.g., 1h for 1 hour)
-   - `
+   - `JWT_REFRESH_EXPIRE`: Refresh token expiration time (e.g., 7d for 7 days)
+ 
+ 2. **Install Dependencies**
+    ```bash
+    pnpm install
+    ```
+ 
+ 3. **Database Setup**
+    ```bash
+    # Generate database types
+    pnpm run db:generate
+ 
+    # Run database migrations
+    pnpm run db:migrate
+    ```
+ 
+ 4. **Start Development Server**
+    ```bash
+    pnpm run dev
+    ```
+    The backend will be available at http://localhost:3001
+ 
+ ### Frontend Setup
+ 
+ 1. **Prerequisites**
+    - Node.js version 20 or above
+      ```bash
+      node --version
+      ```
+    - pnpm package manager
+      ```bash
+      npm install -g pnpm
+      ```
+ 
+ 2. **Environment Configuration**
+    ```bash
+    cd blog-platform-fe
+    nano .env
+    ```
+    Add the following environment variables:
+    ```
+    NEXT_PUBLIC_BASE_URL=http://localhost:3000/api
+    NEXT_PUBLIC_API_URL=http://localhost:3001
+    ```
+    Where:
+    - `NEXT_PUBLIC_BASE_URL`: Base URL for the frontend application
+    - `NEXT_PUBLIC_API_URL`: URL of the backend API server
+ 
+ 3. **Install Dependencies**
+    ```bash
+    pnpm install
+    ```
+ 
+ 4. **Start Development Server**
+    ```bash
+    pnpm run dev
+    ```
+    The frontend will be available at http://localhost:3000
+ 
+ ### Running with Docker
+ 
+ #### Prerequisites
+ 1. **Install Docker**
+    - Download and install Docker Desktop from [https://www.docker.com/products/docker-desktop](https://www.docker.com/products/docker-desktop)
+    - Verify installation:
+      ```bash
+      docker --version
+      docker-compose --version
+      ```
+ 
+ 2. **Start Docker**
+    - Launch Docker Desktop
+    - Wait for Docker to be running (check the Docker icon in your system tray)
+    - Verify Docker is running:
+      ```bash
+      docker info
+      ```
+ 
+ #### Running with Docker Compose
+ 
+ 1. **Build and Start Services**
+    ```bash
+    # From the project root directory
+    docker-compose up --build
+    ```
+    This will:
+    - Build all services (PostgreSQL, Backend, Frontend)
+    - Start the services in the correct order
+    - Set up the network between services
+    - Create persistent volumes for the database
+ 
+ 2. **Access the Services**
+    - Frontend: http://localhost:3000
+    - Backend API: http://localhost:3001
+    - PostgreSQL: localhost:5432
+ 
+ 3. **Common Docker Commands**
+    ```bash
+    # Stop all services
+    docker-compose down
+ 
+    # Stop and remove volumes
+    docker-compose down -v
+ 
+    # View logs
+    docker-compose logs -f
+ 
+    # View logs for specific service
+    docker-compose logs -f backend
+    docker-compose logs -f frontend
+    docker-compose logs -f postgres
+ 
+    # Rebuild and restart a specific service
+    docker-compose up --build backend
+    ```
+ 
+ 4. **Development with Docker**
+    - The services are configured for development with hot reload
+    - Changes to the code will automatically trigger rebuilds
+    - Database data persists between restarts
+ 
+ 5. **Environment Variables**
+    The following environment variables are configured in docker-compose.yml:
+    - PostgreSQL:
+      - Database: blogdb
+      - User: bloguser
+      - Password: blogpassword
+    - Backend:
+      - PORT: 3001
+      - DATABASE_URL: postgresql://bloguser:blogpassword@postgres:5432/blogdb
+      - JWT configuration
+    - Frontend:
+      - NEXT_PUBLIC_BASE_URL: http://localhost:3000/api
+      - NEXT_PUBLIC_API_URL: http://backend:3001
+ 
+ #### Troubleshooting
+ 
+ 1. **Port Conflicts**
+    If you get port conflict errors, ensure no other services are using:
+    - Port 3000 (Frontend)
+    - Port 3001 (Backend)
+    - Port 5432 (PostgreSQL)
+ 
+ 2. **Database Issues**
+    ```bash
+    # Reset the database
+    docker-compose down -v
+    docker-compose up --build
+    ```
+ 
+ 3. **Build Issues**
+    ```bash
+    # Clean build cache
+    docker-compose build --no-cache
+    ```
+ 
+ 4. **Container Issues**
+    ```bash
+    # List all containers
+    docker ps -a
+ 
+    # Remove all containers
+    docker rm -f $(docker ps -aq)
+ 
+    # Remove all images
+    docker rmi -f $(docker images -q)
+    ```
+ 
+ ## Development
+ 
+ - Backend runs on port 3001
+ - Frontend runs on port 3000
+ 
+ ## Contributing
+ 1. Fork the repository
+ 2. Create a feature branch
+ 3. Submit a pull request

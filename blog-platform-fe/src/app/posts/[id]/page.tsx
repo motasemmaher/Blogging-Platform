@@ -10,9 +10,10 @@ import getReadingTime from '@/lib/utils/getReadingTime';
 export async function generateMetadata({ 
   params 
 }: { 
-  params: { id: string } 
+  params: Promise<{ id: string }>
 }): Promise<Metadata> {
-  const post = await postsApi.getPostById(Number(params.id));
+  const { id } = await params;
+  const post = await postsApi.getPostById(Number(id));
   
   if (!post) {
     return {
@@ -38,13 +39,13 @@ export async function generateMetadata({
       description,
     },
     alternates: {
-      canonical: `/posts/${params.id}`,
+      canonical: `/posts/${id}`,
     }
   };
 }
 
-export default async function PostPage({ params }: { params: { id: string } }) {
-  const { id } = params;
+export default async function PostPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
   if (!id) {
     return notFound();
   }

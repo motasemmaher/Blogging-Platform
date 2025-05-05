@@ -1,60 +1,90 @@
 import express from 'express';
 import cors from 'cors';
-import { checkDbConnection } from './db';
+import config from './config';
 import authRoutes from './routes/authRoutes';
 import postRoutes from './routes/postRoutes';
 import commentRoutes from './routes/commentRoutes';
 import { notFound, errorHandler } from './middleware/errorMiddleware';
-import config from './config';
+import { checkDbConnection } from './db';
+import { apiLimiter } from './middleware/rateLimiter';
+import { setupSecurityMiddleware } from './middleware/securityMiddleware';
+import { requestLogger } from './middleware/requestLogger';
+import healthCheckRoutes from './middleware/healthCheck';
+import { setUser } from './middleware/authMiddleware';
+import logger from './utils/logger';
 
-// Create Express server
-const app = express();
+// Server config
 const { PORT } = config.SERVER;
+const app = express();
 
-// Middleware
-app.use(
-  cors({
-    origin: config.CORS.ORIGIN,
-    methods: config.CORS.METHODS,
-    allowedHeaders: config.CORS.ALLOWED_HEADERS,
-    credentials: config.CORS.CREDENTIALS,
-  })
-);
+// Security middleware
+setupSecurityMiddleware(app);
+
+// Request logging middleware
+app.use(requestLogger);
+
+// CORS setup
+app.use(cors({
+  origin: config.CORS.ORIGIN,
+  methods: config.CORS.METHODS,
+  allowedHeaders: config.CORS.ALLOWED_HEADERS,
+  credentials: config.CORS.CREDENTIALS,
+}));
+
+// Request rate limiting
+app.use('/', apiLimiter);
+
+// Body parsing middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Check database connection
-checkDbConnection()
-  .then(connected => {
-    if (!connected) {
-      console.error('Database connection failed. Exiting application.');
-      process.exit(1);
-    }
-  })
-  .catch(error => {
-    console.error('Database connection error:', error);
-    process.exit(1);
-  });
+// Set user middleware - populates req.user if token is present
+app.use(setUser);
+
+// Health check routes
+app.use('/', healthCheckRoutes);
 
 // Welcome route
-app.get('/', (_req, res) => {
+app.get('/', (req, res) => {
   res.json({
-    success: true,
-    message: 'Blog Platform API',
+    message: 'Welcome to the Blog Platform API',
     version: '1.0.0',
   });
 });
 
-// API Routes
+// API routes
 app.use('/auth', authRoutes);
 app.use('/posts', postRoutes);
 app.use('/posts', commentRoutes);
+
 // Error handling middleware
 app.use(notFound);
 app.use(errorHandler);
 
-// Start server - listen on all network interfaces
-app.listen(PORT, () => {
-  console.log(`Server running in ${config.SERVER.NODE_ENV} mode on port ${PORT}`);
-  console.log(`API available at http://localhost:${PORT}`);
+// Check database connection before starting server
+(async () => {
+  const isConnected = await checkDbConnection();
+  
+  if (!isConnected) {
+    logger.error('Database connection failed. Exiting application.');
+    process.exit(1);
+  }
+  
+  // Start server
+  app.listen(PORT, () => {
+    logger.info(`Server running in ${config.SERVER.NODE_ENV} mode on port ${PORT}`);
+  });
+})();
+
+// Handle uncaught exceptions and rejections
+process.on('uncaughtException', (error) => {
+  logger.error('Uncaught Exception', { error });
+  process.exit(1);
 });
+
+process.on('unhandledRejection', (error) => {
+  logger.error('Unhandled Rejection', { error });
+  process.exit(1);
+});
+
+export default app;

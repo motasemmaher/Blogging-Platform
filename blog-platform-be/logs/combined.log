@@ -1,0 +1,549 @@
+[2025-05-05T08:26:35.594Z] [INFO] Server running in development mode on port 3001
+[2025-05-05T08:26:46.478Z] [INFO] Server running in development mode on port 3001
+[2025-05-05T08:26:57.194Z] [INFO] Database connection successful
+[2025-05-05T08:26:57.198Z] [INFO] Server running in development mode on port 3001
+[2025-05-05T08:27:14.445Z] [WARN] GET /posts?page=1&limit=10&search= 404 (26ms)
+{
+  "method": "GET",
+  "url": "/posts?page=1&limit=10&search=",
+  "statusCode": 404,
+  "responseTime": "26ms",
+  "userAgent": "Next.js Middleware",
+  "ip": "::1"
+}
+[2025-05-05T08:27:14.549Z] [WARN] GET /posts?page=1&limit=10&search= 404 (3ms)
+{
+  "method": "GET",
+  "url": "/posts?page=1&limit=10&search=",
+  "statusCode": 404,
+  "responseTime": "3ms",
+  "userAgent": "Next.js Middleware",
+  "ip": "::1"
+}
+[2025-05-05T08:27:14.626Z] [WARN] GET /posts?page=1&limit=10&search= 404 (2ms)
+{
+  "method": "GET",
+  "url": "/posts?page=1&limit=10&search=",
+  "statusCode": 404,
+  "responseTime": "2ms",
+  "userAgent": "Next.js Middleware",
+  "ip": "::1"
+}
+[2025-05-05T08:27:14.690Z] [WARN] GET /posts?page=1&limit=10&search= 404 (2ms)
+{
+  "method": "GET",
+  "url": "/posts?page=1&limit=10&search=",
+  "statusCode": 404,
+  "responseTime": "2ms",
+  "userAgent": "Next.js Middleware",
+  "ip": "::1"
+}
+[2025-05-05T08:27:22.680Z] [WARN] GET /posts?page=1&limit=10&search= 404 (10ms)
+{
+  "method": "GET",
+  "url": "/posts?page=1&limit=10&search=",
+  "statusCode": 404,
+  "responseTime": "10ms",
+  "userAgent": "Next.js Middleware",
+  "ip": "::1"
+}
+[2025-05-05T08:27:58.601Z] [INFO] Database connection successful
+[2025-05-05T08:27:58.604Z] [INFO] Server running in development mode on port 3001
+[2025-05-05T08:27:59.696Z] [WARN] GET /posts?page=1&limit=10&search= 500 (14ms)
+{
+  "method": "GET",
+  "url": "/posts?page=1&limit=10&search=",
+  "statusCode": 500,
+  "responseTime": "14ms",
+  "userAgent": "Next.js Middleware",
+  "ip": "::1"
+}
+[2025-05-05T08:29:06.559Z] [INFO] Database connection successful
+[2025-05-05T08:29:06.562Z] [INFO] Server running in development mode on port 3001
+[2025-05-05T08:29:10.450Z] [DEBUG] Getting posts
+{
+  "page": 1,
+  "limit": 10,
+  "search": ""
+}
+[2025-05-05T08:29:10.776Z] [INFO] GET /posts?page=1&limit=10&search= 200 (340ms)
+{
+  "method": "GET",
+  "url": "/posts?page=1&limit=10&search=",
+  "statusCode": 200,
+  "responseTime": "340ms",
+  "userAgent": "Next.js Middleware",
+  "ip": "::1"
+}
+[2025-05-05T08:30:05.987Z] [INFO] Database connection successful
+[2025-05-05T08:30:05.990Z] [INFO] Server running in development mode on port 3001
+[2025-05-05T08:30:13.328Z] [INFO] Database connection successful
+[2025-05-05T08:30:13.331Z] [INFO] Server running in development mode on port 3001
+[2025-05-05T08:30:15.699Z] [WARN] GET /posts?page=1&limit=10&search= 400 (11ms)
+{
+  "method": "GET",
+  "url": "/posts?page=1&limit=10&search=",
+  "statusCode": 400,
+  "responseTime": "11ms",
+  "userAgent": "Next.js Middleware",
+  "ip": "::1"
+}
+[2025-05-05T08:30:16.492Z] [WARN] GET /posts?page=1&limit=10&search= 400 (5ms)
+{
+  "method": "GET",
+  "url": "/posts?page=1&limit=10&search=",
+  "statusCode": 400,
+  "responseTime": "5ms",
+  "userAgent": "Next.js Middleware",
+  "ip": "::1"
+}
+[2025-05-05T08:30:42.601Z] [INFO] Database connection successful
+[2025-05-05T08:30:42.603Z] [INFO] Server running in development mode on port 3001
+[2025-05-05T08:30:46.706Z] [WARN] GET /posts?page=1&limit=10&search= 400 (13ms)
+{
+  "method": "GET",
+  "url": "/posts?page=1&limit=10&search=",
+  "statusCode": 400,
+  "responseTime": "13ms",
+  "userAgent": "Next.js Middleware",
+  "ip": "::1"
+}
+[2025-05-05T08:30:54.224Z] [INFO] Database connection successful
+[2025-05-05T08:30:54.227Z] [INFO] Server running in development mode on port 3001
+[2025-05-05T08:30:55.125Z] [DEBUG] Getting posts
+{
+  "page": 1,
+  "limit": 10,
+  "search": ""
+}
+[2025-05-05T08:30:55.456Z] [INFO] GET /posts?page=1&limit=10&search= 200 (336ms)
+{
+  "method": "GET",
+  "url": "/posts?page=1&limit=10&search=",
+  "statusCode": 200,
+  "responseTime": "336ms",
+  "userAgent": "Next.js Middleware",
+  "ip": "::1"
+}
+[2025-05-05T08:31:03.684Z] [INFO] Database connection successful
+[2025-05-05T08:31:03.686Z] [INFO] Server running in development mode on port 3001
+[2025-05-05T08:31:57.238Z] [INFO] Database connection successful
+[2025-05-05T08:31:57.241Z] [INFO] Server running in development mode on port 3001
+[2025-05-05T08:32:00.693Z] [DEBUG] Getting posts
+{
+  "page": 1,
+  "limit": 10,
+  "search": ""
+}
+[2025-05-05T08:32:01.097Z] [INFO] GET /posts?page=1&limit=10&search= 200 (414ms)
+{
+  "method": "GET",
+  "url": "/posts?page=1&limit=10&search=",
+  "statusCode": 200,
+  "responseTime": "414ms",
+  "userAgent": "Next.js Middleware",
+  "ip": "::1"
+}
+[2025-05-05T08:32:03.610Z] [DEBUG] Getting post by ID
+{
+  "postId": 3
+}
+[2025-05-05T08:32:03.800Z] [INFO] GET /posts/3 200 (195ms)
+{
+  "method": "GET",
+  "url": "/posts/3",
+  "statusCode": 200,
+  "responseTime": "195ms",
+  "userAgent": "Next.js Middleware",
+  "ip": "::1"
+}
+[2025-05-05T08:32:03.893Z] [WARN] GET /posts/3/comments 404 (4ms)
+{
+  "method": "GET",
+  "url": "/posts/3/comments",
+  "statusCode": 404,
+  "responseTime": "4ms",
+  "userAgent": "Next.js Middleware",
+  "ip": "::1"
+}
+[2025-05-05T08:33:11.521Z] [INFO] Database connection successful
+[2025-05-05T08:33:11.526Z] [INFO] Server running in development mode on port 3001
+[2025-05-05T08:33:12.119Z] [DEBUG] Getting post by ID
+{
+  "postId": 3
+}
+[2025-05-05T08:33:12.293Z] [INFO] GET /posts/3 200 (178ms)
+{
+  "method": "GET",
+  "url": "/posts/3",
+  "statusCode": 200,
+  "responseTime": "178ms",
+  "userAgent": "Next.js Middleware",
+  "ip": "::1"
+}
+[2025-05-05T08:33:12.574Z] [INFO] GET /posts/3/comments 200 (165ms)
+{
+  "method": "GET",
+  "url": "/posts/3/comments",
+  "statusCode": 200,
+  "responseTime": "165ms",
+  "userAgent": "Next.js Middleware",
+  "ip": "::1"
+}
+[2025-05-05T08:33:13.775Z] [DEBUG] Getting post by ID
+{
+  "postId": 3
+}
+[2025-05-05T08:33:13.938Z] [INFO] GET /posts/3 200 (165ms)
+{
+  "method": "GET",
+  "url": "/posts/3",
+  "statusCode": 200,
+  "responseTime": "165ms",
+  "userAgent": "Next.js Middleware",
+  "ip": "::1"
+}
+[2025-05-05T08:33:14.200Z] [INFO] GET /posts/3/comments 200 (172ms)
+{
+  "method": "GET",
+  "url": "/posts/3/comments",
+  "statusCode": 200,
+  "responseTime": "172ms",
+  "userAgent": "Next.js Middleware",
+  "ip": "::1"
+}
+[2025-05-05T08:33:17.143Z] [WARN] POST /posts/3/comments 401 (18ms)
+{
+  "method": "POST",
+  "url": "/posts/3/comments",
+  "statusCode": 401,
+  "responseTime": "18ms",
+  "userAgent": "Next.js Middleware",
+  "ip": "::1"
+}
+[2025-05-05T08:33:18.757Z] [WARN] POST /posts/3/comments 401 (4ms)
+{
+  "method": "POST",
+  "url": "/posts/3/comments",
+  "statusCode": 401,
+  "responseTime": "4ms",
+  "userAgent": "Next.js Middleware",
+  "ip": "::1"
+}
+[2025-05-05T08:33:42.276Z] [WARN] POST /auth/login 401 (178ms)
+{
+  "method": "POST",
+  "url": "/auth/login",
+  "statusCode": 401,
+  "responseTime": "178ms",
+  "userAgent": "Next.js Middleware",
+  "ip": "::1"
+}
+[2025-05-05T08:33:46.236Z] [WARN] POST /auth/login 401 (163ms)
+{
+  "method": "POST",
+  "url": "/auth/login",
+  "statusCode": 401,
+  "responseTime": "163ms",
+  "userAgent": "Next.js Middleware",
+  "ip": "::1"
+}
+[2025-05-05T08:33:54.254Z] [INFO] POST /auth/login 200 (408ms)
+{
+  "method": "POST",
+  "url": "/auth/login",
+  "statusCode": 200,
+  "responseTime": "408ms",
+  "userAgent": "Next.js Middleware",
+  "ip": "::1"
+}
+[2025-05-05T08:33:58.823Z] [DEBUG] Getting posts
+{
+  "page": 1,
+  "limit": 10,
+  "search": "",
+  "userId": 4
+}
+[2025-05-05T08:33:59.165Z] [INFO] GET /posts?page=1&limit=10&search= 200 (347ms)
+{
+  "method": "GET",
+  "url": "/posts?page=1&limit=10&search=",
+  "statusCode": 200,
+  "responseTime": "347ms",
+  "userAgent": "Next.js Middleware",
+  "ip": "::1"
+}
+[2025-05-05T08:34:04.977Z] [DEBUG] Getting post by ID
+{
+  "postId": 2
+}
+[2025-05-05T08:34:05.139Z] [INFO] GET /posts/2 200 (165ms)
+{
+  "method": "GET",
+  "url": "/posts/2",
+  "statusCode": 200,
+  "responseTime": "165ms",
+  "userAgent": "Next.js Middleware",
+  "ip": "::1"
+}
+[2025-05-05T08:34:07.906Z] [DEBUG] Updating post
+{
+  "postId": 2,
+  "userId": 4
+}
+[2025-05-05T08:34:08.234Z] [INFO] PUT /posts/2 200 (331ms)
+{
+  "method": "PUT",
+  "url": "/posts/2",
+  "statusCode": 200,
+  "responseTime": "331ms",
+  "userAgent": "Next.js Middleware",
+  "ip": "::1"
+}
+[2025-05-05T08:34:08.356Z] [DEBUG] Getting posts
+{
+  "page": 1,
+  "limit": 10,
+  "search": "",
+  "userId": 4
+}
+[2025-05-05T08:34:08.403Z] [DEBUG] Getting posts
+{
+  "page": 1,
+  "limit": 10,
+  "search": "",
+  "userId": 4
+}
+[2025-05-05T08:34:08.674Z] [INFO] GET /posts?page=1&limit=10&search= 200 (320ms)
+{
+  "method": "GET",
+  "url": "/posts?page=1&limit=10&search=",
+  "statusCode": 200,
+  "responseTime": "320ms",
+  "userAgent": "Next.js Middleware",
+  "ip": "::1"
+}
+[2025-05-05T08:34:09.661Z] [INFO] GET /posts?page=1&limit=10&search= 200 (1260ms)
+{
+  "method": "GET",
+  "url": "/posts?page=1&limit=10&search=",
+  "statusCode": 200,
+  "responseTime": "1260ms",
+  "userAgent": "Next.js Middleware",
+  "ip": "::1"
+}
+[2025-05-05T08:34:10.772Z] [DEBUG] Getting post by ID
+{
+  "postId": 2
+}
+[2025-05-05T08:34:10.927Z] [INFO] GET /posts/2 200 (157ms)
+{
+  "method": "GET",
+  "url": "/posts/2",
+  "statusCode": 200,
+  "responseTime": "157ms",
+  "userAgent": "Next.js Middleware",
+  "ip": "::1"
+}
+[2025-05-05T08:34:12.981Z] [DEBUG] Updating post
+{
+  "postId": 2,
+  "userId": 4
+}
+[2025-05-05T08:34:13.289Z] [INFO] PUT /posts/2 200 (310ms)
+{
+  "method": "PUT",
+  "url": "/posts/2",
+  "statusCode": 200,
+  "responseTime": "310ms",
+  "userAgent": "Next.js Middleware",
+  "ip": "::1"
+}
+[2025-05-05T08:34:13.357Z] [DEBUG] Getting posts
+{
+  "page": 1,
+  "limit": 10,
+  "search": "",
+  "userId": 4
+}
+[2025-05-05T08:34:13.400Z] [DEBUG] Getting posts
+{
+  "page": 1,
+  "limit": 10,
+  "search": "",
+  "userId": 4
+}
+[2025-05-05T08:34:13.666Z] [INFO] GET /posts?page=1&limit=10&search= 200 (313ms)
+{
+  "method": "GET",
+  "url": "/posts?page=1&limit=10&search=",
+  "statusCode": 200,
+  "responseTime": "313ms",
+  "userAgent": "Next.js Middleware",
+  "ip": "::1"
+}
+[2025-05-05T08:34:13.718Z] [INFO] GET /posts?page=1&limit=10&search= 200 (319ms)
+{
+  "method": "GET",
+  "url": "/posts?page=1&limit=10&search=",
+  "statusCode": 200,
+  "responseTime": "319ms",
+  "userAgent": "Next.js Middleware",
+  "ip": "::1"
+}
+[2025-05-05T08:34:15.699Z] [DEBUG] Getting post by ID
+{
+  "postId": 2
+}
+[2025-05-05T08:34:15.859Z] [INFO] GET /posts/2 200 (161ms)
+{
+  "method": "GET",
+  "url": "/posts/2",
+  "statusCode": 200,
+  "responseTime": "161ms",
+  "userAgent": "Next.js Middleware",
+  "ip": "::1"
+}
+[2025-05-05T08:34:16.060Z] [INFO] GET /posts/2/comments 200 (160ms)
+{
+  "method": "GET",
+  "url": "/posts/2/comments",
+  "statusCode": 200,
+  "responseTime": "160ms",
+  "userAgent": "Next.js Middleware",
+  "ip": "::1"
+}
+[2025-05-05T08:34:18.463Z] [INFO] POST /posts/2/comments 201 (326ms)
+{
+  "method": "POST",
+  "url": "/posts/2/comments",
+  "statusCode": 201,
+  "responseTime": "326ms",
+  "userAgent": "Next.js Middleware",
+  "ip": "::1"
+}
+[2025-05-05T08:34:21.791Z] [DEBUG] Getting post by ID
+{
+  "postId": 3
+}
+[2025-05-05T08:34:21.952Z] [INFO] GET /posts/3 200 (161ms)
+{
+  "method": "GET",
+  "url": "/posts/3",
+  "statusCode": 200,
+  "responseTime": "161ms",
+  "userAgent": "Next.js Middleware",
+  "ip": "::1"
+}
+[2025-05-05T08:34:22.146Z] [INFO] GET /posts/3/comments 200 (160ms)
+{
+  "method": "GET",
+  "url": "/posts/3/comments",
+  "statusCode": 200,
+  "responseTime": "160ms",
+  "userAgent": "Next.js Middleware",
+  "ip": "::1"
+}
+[2025-05-05T08:34:24.915Z] [INFO] POST /posts/3/comments 201 (324ms)
+{
+  "method": "POST",
+  "url": "/posts/3/comments",
+  "statusCode": 201,
+  "responseTime": "324ms",
+  "userAgent": "Next.js Middleware",
+  "ip": "::1"
+}
+[2025-05-05T08:34:27.679Z] [INFO] POST /posts/3/comments 201 (323ms)
+{
+  "method": "POST",
+  "url": "/posts/3/comments",
+  "statusCode": 201,
+  "responseTime": "323ms",
+  "userAgent": "Next.js Middleware",
+  "ip": "::1"
+}
+[2025-05-05T08:34:32.523Z] [DEBUG] Getting post by ID
+{
+  "postId": 1
+}
+[2025-05-05T08:34:32.682Z] [INFO] GET /posts/1 200 (160ms)
+{
+  "method": "GET",
+  "url": "/posts/1",
+  "statusCode": 200,
+  "responseTime": "160ms",
+  "userAgent": "Next.js Middleware",
+  "ip": "::1"
+}
+[2025-05-05T08:34:32.875Z] [INFO] GET /posts/1/comments 200 (159ms)
+{
+  "method": "GET",
+  "url": "/posts/1/comments",
+  "statusCode": 200,
+  "responseTime": "159ms",
+  "userAgent": "Next.js Middleware",
+  "ip": "::1"
+}
+[2025-05-05T08:34:49.724Z] [DEBUG] Creating post
+{
+  "title": "sfadf",
+  "published": true,
+  "authorId": 4
+}
+[2025-05-05T08:34:49.894Z] [INFO] POST /posts 201 (179ms)
+{
+  "method": "POST",
+  "url": "/posts",
+  "statusCode": 201,
+  "responseTime": "179ms",
+  "userAgent": "Next.js Middleware",
+  "ip": "::1"
+}
+[2025-05-05T08:34:49.968Z] [DEBUG] Getting posts
+{
+  "page": 1,
+  "limit": 10,
+  "search": "",
+  "userId": 4
+}
+[2025-05-05T08:34:50.000Z] [DEBUG] Getting posts
+{
+  "page": 1,
+  "limit": 10,
+  "search": "",
+  "userId": 4
+}
+[2025-05-05T08:34:50.283Z] [INFO] GET /posts?page=1&limit=10&search= 200 (332ms)
+{
+  "method": "GET",
+  "url": "/posts?page=1&limit=10&search=",
+  "statusCode": 200,
+  "responseTime": "332ms",
+  "userAgent": "Next.js Middleware",
+  "ip": "::1"
+}
+[2025-05-05T08:34:51.290Z] [INFO] GET /posts?page=1&limit=10&search= 200 (1291ms)
+{
+  "method": "GET",
+  "url": "/posts?page=1&limit=10&search=",
+  "statusCode": 200,
+  "responseTime": "1291ms",
+  "userAgent": "Next.js Middleware",
+  "ip": "::1"
+}
+[2025-05-05T08:35:13.797Z] [DEBUG] Getting posts
+{
+  "page": 1,
+  "limit": 10,
+  "search": "",
+  "userId": 4
+}
+[2025-05-05T08:35:14.107Z] [INFO] GET /posts?page=1&limit=10&search= 200 (312ms)
+{
+  "method": "GET",
+  "url": "/posts?page=1&limit=10&search=",
+  "statusCode": 200,
+  "responseTime": "312ms",
+  "userAgent": "Next.js Middleware",
+  "ip": "::1"
+}

@@ -1,6 +1,38 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 
+export async function generateMetadata() {
+  return {
+    title: 'Blog Platform - Share Your Thoughts with the World',
+    description: 'A platform for writers and readers to connect. Share your stories, read interesting posts, and engage with a community of passionate writers.',
+    keywords: 'blog, writing, reading, community, stories, articles, posts',
+    openGraph: {
+      title: 'Blog Platform - Share Your Thoughts with the World',
+      description: 'A platform for writers and readers to connect. Share your stories, read interesting posts, and engage with a community of passionate writers.',
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: 'Blog Platform - Share Your Thoughts with the World',
+      description: 'A platform for writers and readers to connect. Share your stories, read interesting posts, and engage with a community of passionate writers.',
+    },
+    alternates: {
+      canonical: '/',
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
+  };
+}
+
 export default function Home() {
   return (
     <div className="flex flex-col items-center gap-4 justify-center h-full">

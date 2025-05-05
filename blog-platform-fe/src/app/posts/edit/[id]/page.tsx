@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import { PostForm } from '@/components/forms/post-form';
+import { PostForm } from '@/components/posts/post-form';
 import { postsApi } from '@/lib/api/posts';
 import { cookies } from 'next/headers';
 
